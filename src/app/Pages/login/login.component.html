@@ -1,0 +1,160 @@
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+      <mat-card-title style="text-align:center;">Hi there, to continue please:</mat-card-title>
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+        <mat-tab label="Sign In">
+            <mat-card-content>
+              <form [formGroup]="SingInForm" (ngSubmit)="signIn()">
+                <mat-error *ngIf="loginFailed" class="alert alert-danger">
+                  <p>
+                    {{errorMessage}}
+                  </p>
+                </mat-error>
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Username"
+                    required
+                    name="username"
+                    
+                    formControlName="Username"
+                    >
+                    <mat-error *ngIf="error('Username', 'required')">Username is required</mat-error>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                </mat-form-field>
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Password"
+                    type="password"
+                    required
+                    minlength="8"
+                    name="password1"
+                    
+                    formControlName="Password"
+                  >
+                  <mat-error *ngIf="error('Password', 'required')">Password is required</mat-error>
+                  <mat-error *ngIf="error('Password', 'minlength')">Minimum password length is 8</mat-error>
+                    
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+
+              
+                
+                <button [disabled]="SingInForm.invalid" 
+                  type="submit"
+                  mat-raised-button
+                  color="primary"
+                  class="login-button">
+                  Sign In
+                </button>
+
+  
+              </form>
+            </mat-card-content>
+        </mat-tab>
+
+
+        <mat-tab label="Sign Up">
+          <mat-card-content>
+            <form action="">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Username"
+                  required
+                  name="usernameR"
+                  
+                 >
+                <mat-icon matSuffix>perm_identity</mat-icon>
+                
+  
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="First name"
+                  required
+                  name="firstName"
+                  
+                 >
+                 
+                <mat-icon matSuffix>face</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Last name"
+                  type="lastName"
+                  required
+                  name="lastName"
+                  
+                 >
+                  
+                <mat-icon matSuffix>face</mat-icon>
+  
+              </mat-form-field>
+              <mat-form-field>
+                  <input
+                  matInput
+                  placeholder="Email"
+                  type="email"
+                  required
+                  name="email"
+                  
+                 >
+                  
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                matInput
+                placeholder="Phone number"
+                type="phoneNumber"
+                required
+                name="phoneNumber"
+                
+               >
+                
+              <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Password"
+                  type="password"
+                  required
+                  minlength="8"
+                  name="passwordR1"
+                >
+                
+                  
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Repeat password"
+                  type="password"
+                  required
+                  minlength="8"
+                  name="passwordR2"
+                >
+                
+                  
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+
+              <button
+                mat-raised-button
+                color="primary"
+                class="login-button">
+                Sign Up
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+</div>

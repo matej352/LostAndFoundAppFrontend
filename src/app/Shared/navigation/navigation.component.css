@@ -1,0 +1,13 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+a {
+    margin-left: 5%;
+}   
+
+.logo {
+    margin: 0;
+    text-decoration: none;
+    color:aliceblue;
+}

@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <a class="logo" routerLink="home">
+    <span>
+      <mat-icon>key</mat-icon>
+      <span>Lost&Found</span>
+    </span>
+  </a>
+
+  <div class="spacer"></div>
+  <a mat-button routerLink="home">Home</a>
+  <a *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-raised-button color="basic" routerLink="login">Sign
+    in</a>
+  <a *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button  routerLink="profile">Profile</a>
+  <a *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-raised-button color="accent" (click)="logOut()">Sign out</a>
+</mat-toolbar>
