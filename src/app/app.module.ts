@@ -21,6 +21,7 @@ import { NavigationComponent } from './Shared/navigation/navigation.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './Pages/profile/profile.component';
+import { AdvertisementListComponent } from './Pages/home/advertisement-list/advertisement-list.component';
 
 
 export function getToken() {
@@ -34,10 +35,13 @@ export function getToken() {
     NavigationComponent,
     HomeComponent,
     ProfileComponent,
+    AdvertisementListComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+
+    //Mat
     MatToolbarModule,
     MatButtonModule,
     FontAwesomeModule,
@@ -47,6 +51,7 @@ export function getToken() {
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
+    
     AppRoutingModule,
     ReactiveFormsModule,
     JwtModule.forRoot({     

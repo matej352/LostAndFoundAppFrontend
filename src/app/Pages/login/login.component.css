@@ -19,12 +19,14 @@
     width: 80%;
     display: block;
     margin: auto;
+    margin-bottom: 20px;
   }
 
   mat-error {
     margin: 5% 5% auto;
     width: 80%;
     display: block;
+    margin-top: 5px;
   }
 
   mat-card-content {

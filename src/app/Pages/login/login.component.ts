@@ -1,3 +1,4 @@
+import { ValidatorsStoreService } from './../../Validators/validators-store.service';
 import { CheckIfLoggedInService } from './../../Services/check-if-logged-in.service';
 import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,40 +13,64 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public SingInForm!: FormGroup;
-  public SingUpForm!: FormGroup;
+  public RegisterForm!: FormGroup;
+
   loginFailed:boolean = false;
-  errorMessage!: string
+  registerFailed:boolean = false;
+
+  errorMessageLogin!: string
+  errorMessageRegister!: string
 
   constructor(private authService: AuthService,
               private router: Router,
-              private checkIfLoggedInService: CheckIfLoggedInService) { }
+              private checkIfLoggedInService: CheckIfLoggedInService,
+              private validatorsStore: ValidatorsStoreService) { }
 
   ngOnInit(): void {
 
+    this.createSignInForm();
+    this.createSignUpForm();
+
+  }
+
+  //#region [Setup]
+
+  private createSignInForm(): void {
     this.SingInForm = new FormGroup({
       Username: new FormControl('', {validators: [Validators.required]}),
       Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
     });
-
-    this.SingUpForm = new FormGroup({
-      Username: new FormControl('', {validators: [Validators.required]}),
-      Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
-     
-    });
-
   }
 
-  public error = (controlName: string, errorName: string) => {
+  private createSignUpForm(): void {
+    this.RegisterForm = new FormGroup({
+      Username: new FormControl('', {validators: [Validators.required]}),
+      FirstName: new FormControl('', {validators: [Validators.required]}),
+      LastName: new FormControl('', {validators: [Validators.required]}),
+      Email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+      PhoneNumber: new FormControl('', {validators: [Validators.required, Validators.pattern('[0-9]+')]}),
+      Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
+      ConfirmPassword: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
+    
+     
+    });
+  }
+
+
+  //#endregion
+
+
+  public signInError = (controlName: string, errorName: string) => {
     return this.SingInForm.controls[controlName].hasError(errorName);
   }
 
+  public signUpError = (controlName: string, errorName: string) => {
+    return this.RegisterForm.controls[controlName].hasError(errorName);
+  }
 
+  //#region [Actions]
 
-  signIn() {
-
-    console.log(this.SingInForm.value);
-
-  
+  public signIn() {
 
     this.authService.loginUser(this.SingInForm.value)
     .subscribe({
@@ -61,14 +86,29 @@ export class LoginComponent implements OnInit {
       },
       error: err => {
         this.loginFailed = true;
-        console.log(err)
-        this.errorMessage = err.error 
+        this.errorMessageLogin = err.error 
+      }
+    })
+  }
+
+  public signUp() {
+
+    this.authService.registerUser(this.RegisterForm.value)
+    .subscribe({
+      next: respone => {
+        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/login']);
+      });
+      },
+      error: err => {
+        this.registerFailed = true;
+        this.errorMessageRegister = err.error.detail 
       }
     })
 
-
-
   }
+
+  //#endregion
 
   
 
