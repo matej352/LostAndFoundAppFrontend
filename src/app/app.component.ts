@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LostAndFoundAppFrontend';
+  
+  constructor(public mediaObserver: MediaObserver) {
+
+  }
+
 }

@@ -1,3 +1,6 @@
+import { AdvertisementService } from './../../Services/advertisement.service';
+import { AdvertisementWithItem } from './../../Models/AdvertisementWithItem';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  advertisements$!:Observable<AdvertisementWithItem[]>;
+
+  constructor(private advertisementService: AdvertisementService) { }
 
   ngOnInit(): void {
+      this.advertisements$ = this.advertisementService.getAllActive();
   }
 
 }

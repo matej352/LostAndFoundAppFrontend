@@ -12,6 +12,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +26,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { AdvertisementListComponent } from './Pages/home/advertisement-list/advertisement-list.component';
+import { PublishComponent } from './Pages/publish/publish/publish.component';
 
 
 export function getToken() {
@@ -36,6 +41,7 @@ export function getToken() {
     HomeComponent,
     ProfileComponent,
     AdvertisementListComponent,
+    PublishComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,10 @@ export function getToken() {
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
     
     AppRoutingModule,
     ReactiveFormsModule,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AdvertisementWithItem } from 'src/app/Models/AdvertisementWithItem';
+import { AdvertisementService } from 'src/app/Services/advertisement.service';
 
 @Component({
   selector: 'app-advertisement-list',
@@ -7,11 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvertisementListComponent implements OnInit {
 
-  constructor() { }
+  advertisements$!:Observable<AdvertisementWithItem[]>;
+
+  constructor(private advertisementService: AdvertisementService) { }
 
   url: string = "https://material.angular.io/assets/img/examples/shiba2.jpg";
 
   ngOnInit(): void {
+    this.advertisements$ = this.advertisementService.getAllActive();
   }
 
 }
