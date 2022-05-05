@@ -1,15 +1,28 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <a class="logo" routerLink="home">
-    <span>
-      <mat-icon>key</mat-icon>
-      <span>Lost&Found</span>
-    </span>
-  </a>
+<mat-toolbar color="primary" class="sticky">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <a class="logo" routerLink="home">
+        <span>
+          <mat-icon>key</mat-icon>
+          <span>Lost&Found</span>
+        </span>
+      </a>
+      <div *ngIf="!deviceXs" fxLayout="row">
+        <button mat-button>About us</button>
+        <button mat-button>Contact us</button>
+      </div>
+    </div>
+    <div>
 
-  <div class="spacer"></div>
-  <a mat-button routerLink="home">Home</a>
-  <a *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-raised-button color="basic" routerLink="login">Sign
-    in</a>
-  <a *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button  routerLink="profile">Profile</a>
-  <a *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-raised-button color="accent" (click)="logOut()">Sign out</a>
+      <div fxLayoutAlign="end">
+        <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button routerLink="profile">Profile</button>
+        <button class="margin" *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-button mat-raised-button color="basic" routerLink="login">Sign in</button>
+        <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button mat-raised-button color="accent" (click)="logOut()">Sign out</button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="deviceXs" fxLayoutAlign="space-between end">
+    <button mat-button>About us</button>
+    <button mat-button>Contact us</button>
+  </mat-toolbar-row>
 </mat-toolbar>

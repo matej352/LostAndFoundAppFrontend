@@ -1,26 +1,34 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
+import { ResponsivityService } from 'src/app/Services/responsivity.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
+  mediaSubscription!: Subscription;
+  deviceXs!: boolean;
 
-  constructor(public checkIfLoggedInService: CheckIfLoggedInService) { 
-   
+  constructor(
+    public checkIfLoggedInService: CheckIfLoggedInService,
+    private responsivityService: ResponsivityService
+  ) {
+    this.mediaSubscription = responsivityService
+      .onchange()
+      .subscribe((boolValue) => (this.deviceXs = boolValue));
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngOnDestroy() {
+    this.mediaSubscription.unsubscribe();
   }
-
-
 
   logOut() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('jwt');
     this.checkIfLoggedInService.userAuthenticated(false);
   }
-
 }

@@ -16,6 +16,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatRippleModule } from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { AdvertisementListComponent } from './Pages/home/advertisement-list/advertisement-list.component';
 import { PublishComponent } from './Pages/publish/publish/publish.component';
+import { CategoryListComponent } from './Pages/home/category-list/category-list.component';
 
 
 export function getToken() {
@@ -42,6 +45,7 @@ export function getToken() {
     ProfileComponent,
     AdvertisementListComponent,
     PublishComponent,
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,11 @@ export function getToken() {
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatRippleModule,
+    MatExpansionModule,
+
     AppRoutingModule,
     ReactiveFormsModule,
     JwtModule.forRoot({     

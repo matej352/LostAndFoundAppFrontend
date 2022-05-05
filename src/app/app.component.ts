@@ -1,3 +1,4 @@
+import { ResponsivityService } from './Services/responsivity.service';
 import { Component } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
@@ -9,9 +10,16 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
   title = 'LostAndFoundAppFrontend';
-  
-  constructor(public mediaObserver: MediaObserver) {
+  mediaSubscription!: Subscription;
+  deviceXs!: boolean;
+  constructor(private responsivityService: ResponsivityService) {
+        this.mediaSubscription = responsivityService.onchange().subscribe(boolValue => this.deviceXs = boolValue);
 
+  }
+
+   ngOnInit() {}
+   ngOnDestroy() {
+    this.mediaSubscription.unsubscribe();
   }
 
 }

@@ -1,5 +1,14 @@
-.mat-card {
-    margin: auto;
-    margin-top: 10px;
-    max-width: 700px;
-}
+.example-sidenav-content:first-child {
+    margin: 10px 5px 5px 5px;
+  }
+
+
+  .example-card {
+    max-width: 320px;
+    margin: 0px 5px 5px 0px;
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
