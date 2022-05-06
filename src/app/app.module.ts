@@ -39,6 +39,7 @@ import { CategoryListComponent } from './Pages/home/category-list/category-list.
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { PublishFormComponent } from './Pages/publish/publish/publish-form/publish-form.component';
 import { FormComponent } from './Pages/login/form/form.component';
+import { FormsModule } from '@angular/forms';
 
 
 export function getToken() {
@@ -88,6 +89,7 @@ export function getToken() {
     MatNativeDateModule,
 
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     JwtModule.forRoot({     
       config: { 

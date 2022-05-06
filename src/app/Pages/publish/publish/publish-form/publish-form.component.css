@@ -23,7 +23,7 @@ body {
     font-family: Roboto, sans-serif;    
 }    
     
-mat-card {    
+mat-card, p {    
     max-width: 80%;    
     margin: 2em auto;    
     text-align: center;    
@@ -46,4 +46,21 @@ mat-toolbar-row {
 
 .container {
     margin-top: 150px;
+}
+
+mat-card-header {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 24px;
+}
+
+mat-radio-button {
+    margin-right: 20%;
+}
+
+mat-card-content {
+    width: 100%;
+}
+
+td {
+    width: 300px;
 }

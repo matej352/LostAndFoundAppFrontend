@@ -1,61 +1,55 @@
 <mat-card class="container">     
-    <mat-card-content>    
-        <form>    
-            <table>    
+    <mat-card-content>
+        <mat-card-header>
+           <p>
+            Have you <b> found</b> or <b> lost</b> item?
+           </p>
+        </mat-card-header>    
+        <form [formGroup]="publishForm" (ngSubmit)="publish()">    
+            <table>
                 <tr>    
-                    <td>    
+                    <td colspan="2" style="padding-bottom: 20px;">
+                            <mat-radio-group  formControlName="lostOrFound" name="radioGroup">    
+                                <mat-radio-button name="lost" value="lost" checked="true">LOST</mat-radio-button>    
+                                <mat-radio-button name="found" value="found">FOUND</mat-radio-button>    
+                            </mat-radio-group>           
+                    </td>        
+                </tr>
+                <tr>    
+                    <td colspan="2">    
                         <mat-form-field class="demo-full-width">    
-                            <input matInput placeholder="First Name">    
+                            <input formControlName="title" matInput placeholder="Title">    
                         </mat-form-field>    
-                    </td>    
-                    <td>    
+                    </td>         
+                </tr>         
+                <tr>    
+                    <td colspan="2">    
                         <mat-form-field class="demo-full-width">    
-                            <input matInput placeholder="Last Name">    
+                            <textarea formControlName="description" matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>    
                         </mat-form-field>    
-                    </td>    
+                    </td>
                 </tr>    
                 <tr>    
                     <td colspan="2">    
                         <mat-form-field class="demo-full-width">    
-                            <textarea matInput placeholder="Address" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>    
-                        </mat-form-field>    
-                    </td>    
-                </tr>    
-                <tr>    
-                    <td colspan="2">    
-                        <mat-form-field class="demo-full-width">    
-                            <input matInput [matDatepicker]="picker" placeholder="Date of birth">    
+                            <input formControlName="lossOrFoundDate" matInput [matDatepicker]="picker" placeholder="{{publishForm.get('lostOrFound')?.value == 'lost' ? 'Loss date' : 'Found date'}}">    
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
                             <mat-datepicker touchUi="true" #picker></mat-datepicker>    
                         </mat-form-field>    
                     </td>    
                 </tr>    
                 <tr>    
-                    <td>    
-                        <span>Gender</span><br><br>    
-                        <mat-radio-group>    
-                            <mat-radio-button value="1">Male</mat-radio-button>    
-                            <mat-radio-button value="2">Female</mat-radio-button>    
-                        </mat-radio-group>    
+                    <td style="padding-top: 35px;">    
+                        <span>Select item category</span><br><br>      
                     </td>    
                     <td><br>    
                         <mat-form-field>    
-                            <mat-select placeholder="Select Blog" >    
-                                <mat-option>-- Select Any --</mat-option>    
-                                <mat-option value="1">C#Corner</mat-option>    
-                                <mat-option value="2">C#Corner</mat-option>    
-                                <mat-option value="3">C#Corner</mat-option>    
+                            <mat-select placeholder="Category" formControlName="category">    
+                                <mat-option *ngFor="let category of (categories$ | async)"  value="{{category.categoryId}}" >{{category.name}}</mat-option>      
                             </mat-select>    
                         </mat-form-field>    
                     </td>    
-                </tr>    
-                <tr>    
-                    <td colspan="2">    
-                        <mat-form-field class="demo-full-width">    
-                            <input matInput placeholder="Email">    
-                        </mat-form-field>    
-                    </td>    
-                </tr>    
+                </tr>        
                 <tr>    
                     <td colspan="2">    
     
@@ -63,8 +57,8 @@
                 </tr>    
                 <tr>    
                     <td colspan="2" class="content-center">    
-                        <button mat-raised-button color="accent">Submit</button>    
-                        <button mat-raised-button color="accent">Clear</button>    
+                        <button mat-raised-button color="accent" type="submit">Submit</button>    
+                        <button mat-raised-button color="accent" style="margin-left: 10%;">Clear</button>    
                     </td>    
                 </tr>    
             </table>    

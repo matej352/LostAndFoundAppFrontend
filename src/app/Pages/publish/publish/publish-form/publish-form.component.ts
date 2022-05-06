@@ -1,4 +1,8 @@
+import { Category } from './../../../../Models/Category';
+import { Observable } from 'rxjs';
+import { CategoryService } from './../../../../Services/category.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-publish-form',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublishFormComponent implements OnInit {
 
-  constructor() { }
+  radio: string = "lost";
+
+  categories$!: Observable<Category[]>
+
+  public publishForm!: FormGroup;
+
+
+  constructor(private categoryService: CategoryService,
+              public formBuilder: FormBuilder ) { 
+
+      this.categories$ = categoryService.getAll();
+
+
+      this.publishForm = this.formBuilder.group({
+        lostOrFound:['lost'],
+        title:[''],
+        description:[''],
+        lossOrFoundDate:[''],
+        category:['']
+      })
+
+  }
 
   ngOnInit(): void {
+   
+  }
+
+
+  publish() {
+    console.log(this.publishForm.value)
+
   }
 
 }
