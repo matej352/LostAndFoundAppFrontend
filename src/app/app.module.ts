@@ -18,6 +18,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatChipsModule} from '@angular/material/chips'; 
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +36,9 @@ import { ProfileComponent } from './Pages/profile/profile.component';
 import { AdvertisementListComponent } from './Pages/home/advertisement-list/advertisement-list.component';
 import { PublishComponent } from './Pages/publish/publish/publish.component';
 import { CategoryListComponent } from './Pages/home/category-list/category-list.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { PublishFormComponent } from './Pages/publish/publish/publish-form/publish-form.component';
+import { FormComponent } from './Pages/login/form/form.component';
 
 
 export function getToken() {
@@ -46,6 +55,9 @@ export function getToken() {
     AdvertisementListComponent,
     PublishComponent,
     CategoryListComponent,
+    NotFoundComponent,
+    PublishFormComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +81,11 @@ export function getToken() {
     BrowserAnimationsModule,
     MatRippleModule,
     MatExpansionModule,
+    MatChipsModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     AppRoutingModule,
     ReactiveFormsModule,
@@ -83,7 +100,10 @@ export function getToken() {
     }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    MatNativeDateModule,
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 export interface Item {
     itemId: number;
     title: string; 
@@ -6,4 +8,5 @@ export interface Item {
     findingDate: Date; 
     lossDate: Date;
     AdvertisementId: number;
+    category: Category;
 }

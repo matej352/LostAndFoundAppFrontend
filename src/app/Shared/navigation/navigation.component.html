@@ -16,6 +16,7 @@
 
       <div fxLayoutAlign="end">
         <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button routerLink="profile">Profile</button>
+        <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async"mat-button mat-raised-button color="basic" routerLink="publish">Create advertisement</button>
         <button class="margin" *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-button mat-raised-button color="basic" routerLink="login">Sign in</button>
         <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button mat-raised-button color="accent" (click)="logOut()">Sign out</button>
       </div>

@@ -1,3 +1,5 @@
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { PublishComponent } from './Pages/publish/publish/publish.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +12,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'publish', component: PublishComponent, canActivate: [AuthGuardService]},
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({

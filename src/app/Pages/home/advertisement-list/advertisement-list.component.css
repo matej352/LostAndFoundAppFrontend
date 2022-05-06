@@ -12,3 +12,9 @@
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
+
+  .status {
+    background-color: rgb(200, 54, 54);
+    width: 60px;
+    height: 30px;
+  }
