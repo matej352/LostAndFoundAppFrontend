@@ -28,6 +28,24 @@
                             <textarea formControlName="description" matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>    
                         </mat-form-field>    
                     </td>
+                </tr>
+                <tr> 
+                    <td style="padding-top: 35px;">    
+                        <span>Select item image (optional)</span><br><br>      
+                    </td> 
+                    <td><br>
+                        <div class="file-upload">
+
+                            {{fileName || "No file uploaded yet."}}
+            
+                            <button mat-mini-fab color="primary" class="upload-btn"
+                                (click)="fileUpload.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                            </button>
+            
+                        </div>
+                    </td>
+                    
                 </tr>    
                 <tr>    
                     <td colspan="2">    
@@ -56,12 +74,19 @@
                     </td>    
                 </tr>    
                 <tr>    
-                    <td colspan="2" class="content-center">    
+                    <td colspan="2" class="content-center" style="padding: 35px;">    
                         <button mat-raised-button color="accent" type="submit">Submit</button>    
                         <button mat-raised-button color="accent" style="margin-left: 10%;">Clear</button>    
                     </td>    
                 </tr>    
             </table>    
-        </form>    
+        </form>
+
+        <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+
+            
+
+
     </mat-card-content>    
 </mat-card>   

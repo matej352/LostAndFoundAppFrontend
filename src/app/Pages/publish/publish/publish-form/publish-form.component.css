@@ -62,5 +62,10 @@ mat-card-content {
 }
 
 td {
-    width: 300px;
+    width: 400px;
 }
+
+
+.file-input {
+    display: none;
+  }
