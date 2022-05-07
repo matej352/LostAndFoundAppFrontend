@@ -1,3 +1,6 @@
+import { Category } from './../../../Models/Category';
+import { Observable } from 'rxjs';
+import { CategoryService } from './../../../Services/category.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor() { }
+  categories$!: Observable<Category[]>;
+
+  constructor(private categoryService: CategoryService) { 
+    this.categories$ = categoryService.getAll();
+  }
 
   ngOnInit(): void {
   }
