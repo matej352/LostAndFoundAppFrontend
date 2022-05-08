@@ -1,3 +1,4 @@
+import { AdvertisementComponent } from './Pages/advertisement/advertisement.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { PublishComponent } from './Pages/publish/publish/publish.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'publish', component: PublishComponent, canActivate: [AuthGuardService]},
+  {path: 'advertisement/:id', component: AdvertisementComponent, canActivate: [AuthGuardService]},
   {path: '**', component: NotFoundComponent},
 ];
 

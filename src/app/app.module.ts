@@ -24,6 +24,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { DomSanitizer } from '@angular/platform-browser';
 
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +41,8 @@ import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { PublishFormComponent } from './Pages/publish/publish/publish-form/publish-form.component';
 import { FormComponent } from './Pages/login/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { AdvertisementComponent } from './Pages/advertisement/advertisement.component';
+import { AdvertisementItemComponent } from './Pages/advertisement/advertisement-item/advertisement-item.component';
 
 
 export function getToken() {
@@ -59,6 +62,8 @@ export function getToken() {
     NotFoundComponent,
     PublishFormComponent,
     FormComponent,
+    AdvertisementComponent,
+    AdvertisementItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +109,7 @@ export function getToken() {
   ],
   providers: [
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,12 @@
+.container {
+    top: 0;
+    margin-top: 60px;
+    padding: 0;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #fafafa;
+  }
+

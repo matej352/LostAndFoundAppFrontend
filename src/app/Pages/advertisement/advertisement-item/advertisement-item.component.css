@@ -1,0 +1,24 @@
+    
+  mat-card {
+    width: 50%;
+    margin: 10% auto;
+    border-radius: 8px;
+  }
+  mat-form-field {
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  mat-error {
+    margin: 5% 5% auto;
+    width: 80%;
+    display: block;
+    margin-top: 5px;
+  }
+
+  mat-card-content {
+    margin-top: 20px;
+    
+  }
