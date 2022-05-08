@@ -1,3 +1,16 @@
 .list-width {
     width: 250px;
   }
+
+  .group {
+    display: flex;
+    flex-flow: column;
+  }
+
+  mat-button-toggle {
+    height: 80px;
+  }
+
+  p {
+    margin-top: 16px;
+  }

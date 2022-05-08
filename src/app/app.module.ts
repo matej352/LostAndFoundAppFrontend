@@ -23,6 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -92,6 +93,7 @@ export function getToken() {
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatButtonToggleModule,
 
     AppRoutingModule,
     FormsModule,

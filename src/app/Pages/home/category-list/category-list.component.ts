@@ -19,4 +19,8 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectCategory(categoryId: number) {
+    console.log(categoryId);
+  }
+
 }
