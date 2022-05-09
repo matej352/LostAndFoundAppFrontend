@@ -1,6 +1,9 @@
 <div>
   <div class="list-width"></div>
-  <mat-button-toggle-group class ="group">
+  <mat-button-toggle-group class ="group" value="all">
+    <mat-button-toggle 
+    role="listitem" class="list-item" matRipple (click)="selectCategory(-1)" value="all"><p><b>All</b></p>
+   </mat-button-toggle>
     <mat-button-toggle  *ngFor="let category of (categories$ | async)"
      role="listitem" class="list-item" matRipple id="{{category.categoryId}}" 
      (click)="selectCategory(category.categoryId)"><p>{{category.name}}</p>

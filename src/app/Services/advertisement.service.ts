@@ -21,7 +21,7 @@ export class AdvertisementService {
 
   getAllActiveCategoryFilter(categoryId: number): Observable<AdvertisementWithItem[]> {
 
-    if (categoryId == 1000) {
+    if (categoryId == -1) {
         return this.getAllActive();
     } else {
       return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsCategoryFilter/${categoryId}`);
