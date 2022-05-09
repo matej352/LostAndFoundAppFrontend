@@ -19,6 +19,15 @@ export class AdvertisementService {
     return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement`);
   }
 
+  getAllActiveCategoryFilter(categoryId: number): Observable<AdvertisementWithItem[]> {
+
+    if (categoryId == 1000) {
+        return this.getAllActive();
+    } else {
+      return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsCategoryFilter/${categoryId}`);
+    }
+  }
+
   getAdvertisementWithItem(advertisementId: number): Observable<AdvertisementWithItem> {
     const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
     return this.http.get<AdvertisementWithItem>( `${this.restApiUrl}/Advertisement/GetAdvertisementWithItem/${advertisementId}`, {headers : headers});
@@ -32,9 +41,6 @@ export class AdvertisementService {
     .pipe(
       catchError((err) => {
         console.log('error caught in service')
-       
-        //Handle the error here
-        
         return throwError(err);    //Rethrow it back to component
       })
     )

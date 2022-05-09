@@ -1,3 +1,4 @@
+import { UiService } from './../../../Services/ui.service';
 import { Category } from './../../../Models/Category';
 import { Observable } from 'rxjs';
 import { CategoryService } from './../../../Services/category.service';
@@ -12,7 +13,7 @@ export class CategoryListComponent implements OnInit {
 
   categories$!: Observable<Category[]>;
 
-  constructor(private categoryService: CategoryService) { 
+  constructor(private categoryService: CategoryService, private uiService: UiService) { 
     this.categories$ = categoryService.getAll();
   }
 
@@ -20,7 +21,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   selectCategory(categoryId: number) {
-    console.log(categoryId);
+   this.uiService.categoryFilter(categoryId);
   }
 
 }
