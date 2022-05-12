@@ -1,0 +1,28 @@
+.container {
+    height: 100%;
+    top: 0;  
+    padding: 0;
+    width: 100%;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #fafafa;
+  }
+  
+  .error {
+    width: 80%;
+    margin: 10% auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20%;
+    font-size: xx-large;
+    font: 400 14px/35px Roboto, "Helvetica Neue", sans-serif;
+
+  }
+
+  .columns {
+      margin-right: 10%;
+  }
