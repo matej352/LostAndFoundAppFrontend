@@ -12,7 +12,12 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   mediaSubscription!: Subscription;
+
+  uiSubscription!: Subscription;
+
   deviceXs!: boolean;
+
+  public loggedInUsersUsername!: string;
 
   constructor(
     public checkIfLoggedInService: CheckIfLoggedInService,
@@ -23,18 +28,29 @@ export class NavigationComponent implements OnInit {
     this.mediaSubscription = responsivityService
       .onchange()
       .subscribe((boolValue) => (this.deviceXs = boolValue));
+
+    this.uiSubscription = uiService.onUserLoggIn().subscribe( () => this.loggedInUsersUsername = this.getLoggedInUserName());
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loggedInUsersUsername = this.getLoggedInUserName()
+  }
 
   ngOnDestroy() {
     this.mediaSubscription.unsubscribe();
+    this.uiSubscription.unsubscribe();
   }
 
   logOut() {
     localStorage.removeItem('jwt');
     this.checkIfLoggedInService.userAuthenticated(false);
   }
+
+  getLoggedInUserName(): any {
+      return this.checkIfLoggedInService.getLoggedInUsersUsername();
+  }
+
+
 
  
 } 

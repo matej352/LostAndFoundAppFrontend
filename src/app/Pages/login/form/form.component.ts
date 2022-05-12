@@ -1,3 +1,4 @@
+import { UiService } from './../../../Services/ui.service';
 import { ValidatorsStoreService } from './../../../Validators/validators-store.service';
 import { CheckIfLoggedInService } from './../../../Services/check-if-logged-in.service';
 import { AuthService } from './../../../Services/auth.service';
@@ -24,7 +25,8 @@ export class FormComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private checkIfLoggedInService: CheckIfLoggedInService,
-              private validatorsStore: ValidatorsStoreService) { }
+              private validatorsStore: ValidatorsStoreService,
+              private uiService: UiService) { }
 
   ngOnInit(): void {
 
@@ -81,6 +83,9 @@ export class FormComponent implements OnInit {
 
         this.checkIfLoggedInService.userAuthenticated(true);
         
+        //for updating ui of navigation
+        this.uiService.userLoggedIn();
+
         this.router.navigate(["/home"]);
   
       },

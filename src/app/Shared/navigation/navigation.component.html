@@ -14,16 +14,31 @@
     </div>
     <div>
 
-      <div fxLayoutAlign="end">
-        <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button routerLink="profile">Profile</button>
+      <div *ngIf="!deviceXs" fxLayoutAlign="end">
+        <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button routerLink="profile/{{loggedInUsersUsername}}">Profile</button>
         <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async"mat-button mat-raised-button color="basic" routerLink="publish">Create advertisement</button>
         <button class="margin" *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-button mat-raised-button color="basic" routerLink="login">Sign in</button>
         <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button mat-raised-button color="accent" (click)="logOut()" routerLink="home">Sign out</button>
       </div>
     </div>
+    <button *ngIf="deviceXs" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </mat-toolbar-row>
-  <mat-toolbar-row *ngIf="deviceXs" fxLayoutAlign="space-between end">
-    <button mat-button>About us</button>
-    <button mat-button>Contact us</button>
-  </mat-toolbar-row>
+  
 </mat-toolbar>
+
+<!-- Menu Items when device size is XS -->
+<mat-menu #menu="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item>About us</button>
+  <button mat-menu-item>Contact us</button>
+  <mat-divider></mat-divider>
+  <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-menu-item routerLink="profile/{{loggedInUsersUsername}}">Profile</button>
+  <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-menu-item routerLink="publish">Create advertisement</button>
+  <button *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-menu-item routerLink="login">Sign in</button>
+  <div *ngIf="checkIfLoggedInService.isLoggedIn$ | async">
+    <mat-divider></mat-divider>
+    <button  mat-menu-item (click)="logOut()" routerLink="home">Sign out</button>
+  </div>
+  
+</mat-menu>

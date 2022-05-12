@@ -33,5 +33,17 @@ export class CheckIfLoggedInService {
     this._isLoggedIn$.next(status);
   }
 
+  getLoggedInUsersUsername(): any {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      const tokenClaims = JSON.parse(window.atob(token.split('.')[1]));
+      return tokenClaims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    } else {
+      this._isLoggedIn$.next(false);
+    }
+   
+  }
+
+
 
 }

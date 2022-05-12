@@ -10,6 +10,8 @@ export class UiService {
 
   private subject = new Subject<any>();
 
+  private subjectForNavigation = new Subject<any>();
+
   categoryFilter(categoryId: number): void {
     this.subject.next(categoryId);
   }
@@ -17,5 +19,17 @@ export class UiService {
   onFilterChange(): Observable<any> {
     return this.subject.asObservable();
   }
+
+
+
+
+  userLoggedIn(): void {
+    this.subjectForNavigation.next(true);
+  }
+
+  onUserLoggIn(): Observable<any> {
+    return this.subjectForNavigation.asObservable();
+  }
+
 
 }

@@ -24,6 +24,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import { MatDividerModule } from '@angular/material/divider';
+
+
 
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -94,6 +97,7 @@ export function getToken() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonToggleModule,
+    MatDividerModule,
 
     AppRoutingModule,
     FormsModule,
