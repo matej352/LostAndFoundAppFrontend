@@ -18,3 +18,14 @@
     width: 60px;
     height: 30px;
   }
+
+  .image {
+    width: 352px;
+    height: 250px;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+
+  .description-container {
+    height: 80px;
+  }
