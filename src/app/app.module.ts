@@ -37,7 +37,6 @@ import { LoginComponent } from './Pages/login/login.component';
 import { NavigationComponent } from './Shared/navigation/navigation.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProfileComponent } from './Pages/profile/profile.component';
 import { AdvertisementListComponent } from './Pages/home/advertisement-list/advertisement-list.component';
 import { PublishComponent } from './Pages/publish/publish/publish.component';
 import { CategoryListComponent } from './Pages/home/category-list/category-list.component';
@@ -59,7 +58,6 @@ export function getToken() {
     LoginComponent,
     NavigationComponent,
     HomeComponent,
-    ProfileComponent,
     AdvertisementListComponent,
     PublishComponent,
     CategoryListComponent,

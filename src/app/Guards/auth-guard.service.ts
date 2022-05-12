@@ -16,6 +16,9 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
     
+    if(token) {
+      localStorage.removeItem("jwt");
+    }
     this.router.navigate(["login"]);
     return false;
   }
