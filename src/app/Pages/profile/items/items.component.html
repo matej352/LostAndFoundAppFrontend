@@ -1,153 +1,77 @@
 <div *ngIf="found" class="flex-container">
-    <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-        <mat-card class="example-card" >
-          <mat-card-header fxLayoutAlign="space-between center">
-            <mat-chip-list aria-label="Dog selection">
-            <mat-chip>
-              
-            </mat-chip>
-          </mat-chip-list>
-          </mat-card-header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-          <img class="image" mat-card-image src = "./../../../../assets/img/noImage.png">
-          
-          <mat-card-content>
-            <div class="description-container">
-              <p>
-                
-              </p>
-            </div>
-           
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button >DETAILS</button>
-            <button mat-button>CONTACT USER</button>
-          </mat-card-actions>
-        </mat-card>
+  <div *ngFor="let advertisement of (advertisements$ |async)" class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <mat-card *ngIf="advertisement.found" class="example-card" >
+      <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
+      justify-content: space-between;">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value = "{{advertisement.status ? 'active' : 'resolved'}}" >
+          <mat-button-toggle value="active"  (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active</mat-button-toggle>
+          <mat-button-toggle value="resolved" (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-chip-list aria-label="Dog selection">
+        <mat-chip>
+          {{advertisement.lost ? 'Lost' : 'Found'}}
+        </mat-chip>
+      </mat-chip-list>
       </div>
-      <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-        <mat-card class="example-card" >
-          <mat-card-header fxLayoutAlign="space-between center">
-            <mat-chip-list aria-label="Dog selection">
-            <mat-chip>
-              
-            </mat-chip>
-          </mat-chip-list>
-          </mat-card-header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-          <img class="image" mat-card-image src = "./../../../../assets/img/noImage.png">
-          
-          <mat-card-content>
-            <div class="description-container">
-              <p>
-                
-              </p>
-            </div>
-           
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button >DETAILS</button>
-            <button mat-button>CONTACT USER</button>
-          </mat-card-actions>
-        </mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+        <mat-card-title>{{advertisement.item.title}}</mat-card-title>
+        <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="image" *ngIf="!advertisement.item.imageData"  mat-card-image src = "./../../../../assets/img/noImage.png">
+      <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image [src] = "prepareSource(advertisement.item.imageData)">
+      <mat-card-content>
+        <div class="description-container">
+          <p>
+            {{advertisement.item.description}}
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <p>
+          <b>Find date:</b> {{advertisement.item.findingDate | date}}
+        </p>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="!found" class="flex-container">
+  <div *ngFor="let advertisement of (advertisements$ |async)" class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <mat-card *ngIf="advertisement.lost" class="example-card" >
+      <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
+      justify-content: space-between;">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value = "{{advertisement.status ? 'active' : 'resolved'}}" >
+          <mat-button-toggle value="active"  (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active</mat-button-toggle>
+          <mat-button-toggle value="resolved" (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-chip-list aria-label="Dog selection">
+        <mat-chip>
+          {{advertisement.lost ? 'Lost' : 'Found'}}
+        </mat-chip>
+      </mat-chip-list>
       </div>
-      <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-        <mat-card class="example-card" >
-          <mat-card-header fxLayoutAlign="space-between center">
-            <mat-chip-list aria-label="Dog selection">
-            <mat-chip>
-              
-            </mat-chip>
-          </mat-chip-list>
-          </mat-card-header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-          <img class="image" mat-card-image src = "./../../../../assets/img/noImage.png">
-          
-          <mat-card-content>
-            <div class="description-container">
-              <p>
-                
-              </p>
-            </div>
-           
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button >DETAILS</button>
-            <button mat-button>CONTACT USER</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-        <mat-card class="example-card" >
-          <mat-card-header fxLayoutAlign="space-between center">
-            <mat-chip-list aria-label="Dog selection">
-            <mat-chip>
-              
-            </mat-chip>
-          </mat-chip-list>
-          </mat-card-header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-          <img class="image" mat-card-image src = "./../../../../assets/img/noImage.png">
-          
-          <mat-card-content>
-            <div class="description-container">
-              <p>
-                
-              </p>
-            </div>
-           
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button >DETAILS</button>
-            <button mat-button>CONTACT USER</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-        <mat-card class="example-card" >
-          <mat-card-header fxLayoutAlign="space-between center">
-            <mat-chip-list aria-label="Dog selection">
-            <mat-chip>
-              
-            </mat-chip>
-          </mat-chip-list>
-          </mat-card-header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-          <img class="image" mat-card-image src = "./../../../../assets/img/noImage.png">
-          
-          <mat-card-content>
-            <div class="description-container">
-              <p>
-                
-              </p>
-            </div>
-           
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button >DETAILS</button>
-            <button mat-button>CONTACT USER</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
-<p *ngIf="!found">lost</p>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+        <mat-card-title>{{advertisement.item.title}}</mat-card-title>
+        <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="image" *ngIf="!advertisement.item.imageData"  mat-card-image src = "./../../../../assets/img/noImage.png">
+      <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image [src] = "prepareSource(advertisement.item.imageData)">
+      <mat-card-content>
+        <div class="description-container">
+          <p>
+            {{advertisement.item.description}}
+          </p>
+        </div>
+       
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <p>
+          <b>Loss date:</b> {{advertisement.item.lossDate | date}}
+        </p>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

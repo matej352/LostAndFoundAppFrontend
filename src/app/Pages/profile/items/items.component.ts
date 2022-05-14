@@ -1,6 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
+import { AdvertisementService } from 'src/app/Services/advertisement.service';
+import { Observable } from 'rxjs';
+import { AdvertisementWithItem } from 'src/app/Models/AdvertisementWithItem';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-items',
@@ -13,13 +17,27 @@ export class ItemsComponent implements OnInit {
 
   public found!: boolean;
 
-  constructor(public checkIfLoggedInService: CheckIfLoggedInService, private router: Router) { }
+  advertisements$!:Observable<AdvertisementWithItem[]>;
+
+  constructor(public checkIfLoggedInService: CheckIfLoggedInService,
+     private router: Router, 
+     private advertisementService: AdvertisementService,
+     private sanitizer: DomSanitizer,
+     private redirect: Router,) { }
 
   ngOnInit(): void {
     this.loggedInUsersUsername = this.getLoggedInUserName();
     this.found = this.checkLostOrFound();
+    this.advertisements$ = this.advertisementService.getAllFromUser(this.loggedInUsersUsername);
 
   }
+
+
+  public prepareSource(data: string): SafeResourceUrl {
+    const imagePath = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + data);
+    return imagePath;
+  }
+
 
   getLoggedInUserName(): any {
     return this.checkIfLoggedInService.getLoggedInUsersUsername();
@@ -33,5 +51,40 @@ export class ItemsComponent implements OnInit {
     }
     return false;
   }
+
+
+
+
+
+
+changeStatus(id: number, status: string, cameFrom: string): void {
+
+  //case if user clicks on already used status
+  if (cameFrom == "active" && status == "1") {
+    return;
+  }
+  if (cameFrom == "resolved" && status == "0") {
+    return;
+  }
+
+  this.advertisementService.changeAdvStatus(id).toPromise().then(
+    () => {
+      const pathLostOrFound = this.found ? 'found' : 'lost';
+      this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+        this.redirect.navigate(["/profile", this.loggedInUsersUsername,"items", pathLostOrFound]);
+    })
+    }
+  );
+
+
+
+
+}
+
+
+
+
+
+
 
 }

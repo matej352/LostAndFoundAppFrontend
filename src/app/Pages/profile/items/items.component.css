@@ -35,6 +35,11 @@
       flex-wrap: wrap;
   }
 
+  mat-button-toggle {
+    width: 100px;
+  }
+
+
 
   @media (max-width: 550px) {
     .example-card {

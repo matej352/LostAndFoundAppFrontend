@@ -19,6 +19,12 @@ export class AdvertisementService {
     return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement`);
   }
 
+  getAllFromUser(username: string): Observable<AdvertisementWithItem[]> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+    return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsFromUser/${username}`, {headers : headers});
+  }
+
+
   getAllActiveCategoryFilter(categoryId: number): Observable<AdvertisementWithItem[]> {
 
     if (categoryId == -1) {
@@ -54,6 +60,12 @@ export class AdvertisementService {
     return this.http.get<Advertisement>( `${this.restApiUrl}/advertisement`, {headers : headers, params : params});
   }
 
+
+  changeAdvStatus(advertisementId: number): Observable<void> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+
+    return this.http.put<void>( `${this.restApiUrl}/advertisement/${advertisementId}`, advertisementId, {headers : headers});
+  }
 
 
 

@@ -20,8 +20,6 @@ export class AdvertisementListComponent implements OnInit {
     this.subscription = uiService.onFilterChange().subscribe(filterId => this.applyCategoryFilter(filterId));
   }
 
-  url: string = "https://material.angular.io/assets/img/examples/shiba2.jpg";
-
   ngOnInit(): void {
     this.advertisements$ = this.advertisementService.getAllActive();
   }
