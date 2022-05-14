@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips'; 
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -51,7 +52,8 @@ import { ItemsComponent } from './items/items.component';
     MatSidenavModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule,
 
 
     

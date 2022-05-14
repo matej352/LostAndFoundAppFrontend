@@ -3,6 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 
 @UntilDestroy()
 @Component({
@@ -14,9 +15,20 @@ export class ProfileComponent implements OnInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) {}
+  public loggedInUsersUsername!: string;
 
-  ngOnInit(): void {}
+
+  constructor(private observer: BreakpointObserver, public checkIfLoggedInService: CheckIfLoggedInService) {}
+
+  ngOnInit(): void {
+    this.loggedInUsersUsername = this.getLoggedInUserName()
+  }
+
+
+  getLoggedInUserName(): any {
+    return this.checkIfLoggedInService.getLoggedInUsersUsername();
+  }
+
 
   ngAfterViewInit() {
     this.observer

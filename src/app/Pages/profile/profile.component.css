@@ -32,6 +32,13 @@
   
     overflow: auto;
   }
+
+  @media (max-width: 550px) {
+    .content {
+       margin: 0px;
+       padding: 0px;
+    }
+  }
   
   mat-sidenav-container {
     height: calc(100vh - 65px);

@@ -15,7 +15,10 @@ const routes: Routes = [
         path: 'general', component: GeneralComponent
       },
       {
-        path: 'items', component: ItemsComponent
+        path: 'items/lost', component: ItemsComponent
+      },
+      {
+        path: 'items/found', component: ItemsComponent
       }
 
     ]
