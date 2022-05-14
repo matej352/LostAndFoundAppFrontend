@@ -13,6 +13,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatInputModule} from '@angular/material/input';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProfileComponent } from './profile.component';
 import { GeneralComponent } from './general/general.component';
@@ -29,6 +35,7 @@ import { ItemsComponent } from './items/items.component';
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    ReactiveFormsModule,
    
 
 
@@ -42,6 +49,10 @@ import { ItemsComponent } from './items/items.component';
     MatButtonToggleModule,
     MatDividerModule,
     MatSidenavModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule
+
 
     
   ]

@@ -1,0 +1,77 @@
+.mat-card {    
+    text-align: -webkit-center;    
+}    
+    
+.demo-toolbar {    
+    display: flex;    
+    align-items: center;    
+    width: 100%;    
+}    
+    
+.demo-form {    
+    min-width: 150px;    
+    max-width: 500px;    
+    width: 100%;    
+}    
+    
+.demo-full-width {    
+    width: 100%;    
+}    
+    
+body {    
+    margin: 0;    
+    font-family: Roboto, sans-serif;    
+}    
+    
+mat-card, p {    
+       
+    margin: 2em auto;    
+    text-align: center;    
+}    
+    
+mat-toolbar-row {    
+    justify-content: space-between;    
+}    
+    
+.done {    
+    position: fixed;    
+    bottom: 20px;    
+    right: 20px;    
+    color: white;    
+}    
+    
+.content-center {    
+    text-align: -webkit-center;    
+}    
+
+
+
+mat-card-header {
+    text-align: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 24px;
+}
+
+mat-radio-button {
+    margin-right: 20%;
+}
+
+mat-card-content {
+    width: 100%;
+}
+
+td {
+    width: 400px;
+}
+
+
+.file-input {
+    display: none;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}

@@ -1,1 +1,132 @@
-<p>general works!</p>
+<mat-card class="container">     
+    <mat-card-content  *ngIf="is_disabled && account">
+        <mat-card-header>
+           <p>
+           Profile details
+           </p>
+        </mat-card-header>    
+           
+            <table>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="username"><b>Username:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input id="username" matInput [value]="account.username" disabled>    
+                        </mat-form-field>    
+                    </td>         
+                </tr>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="firstName"><b>First name:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input  id="firstName" matInput [value]="account.firstName" disabled>    
+                        </mat-form-field>    
+                    </td>         
+                </tr>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="lastName"><b>Last name:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input  id="lastName" matInput [value]="account.lastName" disabled>    
+                        </mat-form-field>    
+                    </td>         
+                </tr> 
+                <tr>
+                    <b>Contact:</b>
+                </tr>
+                <tr>    
+                    <td>    
+                        <mat-form-field id="phoneNumber" class="demo-full-width">    
+                            <input matInput placeholder="Phone number" [value]="account.phoneNumber" disabled>    
+                        </mat-form-field>    
+                    </td>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Email" [value]="account.email" disabled>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>         
+                    
+                <tr>    
+                    <td colspan="2">    
+    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2" class="content-center" style="padding: 35px;">   
+                        <button mat-raised-button color="accent" (click)="wantUpdate()">Update</button>     
+                    </td>    
+                </tr>    
+            </table>    
+       
+
+
+    </mat-card-content>    
+
+
+
+
+    <mat-card-content  *ngIf="!is_disabled">
+        <mat-card-header>
+           <p>
+           Profile details
+           </p>
+        </mat-card-header>    
+        <form [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()">    
+            <table>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="username"><b>Username:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input id="username" matInput [value]="this.account?.username" disabled>    
+                        </mat-form-field>    
+                    </td>         
+                </tr>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="firstName"><b>First name:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input formControlName="firstName" id="firstName" matInput >    
+                        </mat-form-field>    
+                    </td>         
+                </tr>
+                <tr>    
+                    <td colspan="2">  
+                        <label for="lastName"><b>Last name:</b></label>  
+                        <mat-form-field class="demo-full-width">    
+                            <input formControlName="lastName" id="lastName" matInput >    
+                        </mat-form-field>    
+                    </td>         
+                </tr> 
+                <tr>
+                    <b>Contact:</b>
+                </tr>
+                <tr>    
+                    <td>    
+                        <mat-form-field id="phoneNumber" class="demo-full-width">    
+                            <input formControlName="phoneNumber" matInput placeholder="Phone number">    
+                        </mat-form-field>    
+                    </td>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input formControlName="email" matInput placeholder="Email">    
+                        </mat-form-field>    
+                    </td>    
+                </tr>         
+                    
+                <tr>    
+                    <td colspan="2">    
+    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2" class="content-center" style="padding: 35px;">   
+                        <button mat-raised-button color="accent" type="submit" style="margin-left: 10%;">Save changes</button>      
+                    </td>    
+                </tr>    
+            </table>    
+        </form>    
+
+
+    </mat-card-content>   
+</mat-card>   

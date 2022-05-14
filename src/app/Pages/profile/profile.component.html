@@ -1,6 +1,7 @@
 <mat-card class="page">
-  <mat-toolbar *ngIf="sidenav.mode === 'over'" class="mat-elevation-z8">
-    <button
+  <mat-toolbar *ngIf="sidenav.mode === 'over'"  style="display: flex;">
+    <div class="nav">
+      <button
       mat-icon-button
       *ngIf="sidenav.mode === 'over'"
       (click)="sidenav.toggle()"
@@ -8,6 +9,9 @@
       <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
       <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
+    </div>
+    <div class="nav"></div>
+    
   </mat-toolbar>
     <mat-sidenav-container>
         <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">

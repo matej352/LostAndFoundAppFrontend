@@ -6,18 +6,19 @@
 
 
   mat-toolbar {
-    background: #004a9f;
-    color: white;
+    background: white;
+    color: #004a9f;
   }
   
   mat-sidenav {
     margin: 16px;
     width: 200px;
+    height: 625px;
     border-right: none;
     background: #002b5c;
     color: white;
     border-radius: 10px;
-    padding: 16px;
+    padding: 0px;
     text-align: center;
   }
   
@@ -27,7 +28,7 @@
     margin: 16px;
     margin-left: 32px;
   
-    padding: 16px;
+    padding: 0px;
   
     overflow: auto;
   }
@@ -70,4 +71,10 @@
     margin-top: 16px;
     margin-bottom: 16px;
     background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .nav {
+    padding: 0px;
+    margin: 0px;
+    flex: 1 2;
   }
