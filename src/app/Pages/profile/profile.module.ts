@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
 import { GeneralComponent } from './general/general.component';
 import { ItemsComponent } from './items/items.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 
@@ -32,6 +33,7 @@ import { ItemsComponent } from './items/items.component';
     ProfileComponent,
     GeneralComponent,
     ItemsComponent,
+    MessagesComponent,
   ],
   imports: [
     CommonModule,

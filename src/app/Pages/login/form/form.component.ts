@@ -1,3 +1,4 @@
+import { AccountService } from 'src/app/Services/account.service';
 import { UiService } from './../../../Services/ui.service';
 import { ValidatorsStoreService } from './../../../Validators/validators-store.service';
 import { CheckIfLoggedInService } from './../../../Services/check-if-logged-in.service';
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { HubConnection, HubConnectionBuilder, LogLevel, HttpTransportType } from '@aspnet/signalr';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -13,8 +16,15 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit {
 
+
+ // hubConnection!: HubConnection;
+
+
   public SingInForm!: FormGroup;
   public RegisterForm!: FormGroup;
+
+  enteredUsername!: string;
+  connId!: string;
 
   loginFailed:boolean = false;
   registerFailed:boolean = false;
@@ -26,9 +36,17 @@ export class FormComponent implements OnInit {
               private router: Router,
               private checkIfLoggedInService: CheckIfLoggedInService,
               private validatorsStore: ValidatorsStoreService,
-              private uiService: UiService) { }
+              private uiService: UiService,
+              public accountService: AccountService) { }
 
   ngOnInit(): void {
+
+    /*this.hubConnection = new HubConnectionBuilder()
+    .withUrl("https://localhost:44326/chat", {
+      skipNegotiation: true,
+      transport: HttpTransportType.WebSockets
+    })
+    .build(); */
 
     this.createSignInForm();
     this.createSignUpForm();
@@ -74,6 +92,8 @@ export class FormComponent implements OnInit {
 
   public signIn() {
 
+    this.enteredUsername = this.SingInForm.get('Username')?.value;
+
     this.authService.loginUser(this.SingInForm.value)
     .subscribe({
       next: response => {
@@ -85,6 +105,9 @@ export class FormComponent implements OnInit {
         
         //for updating ui of navigation
         this.uiService.userLoggedIn();
+
+       
+        
 
         this.router.navigate(["/home"]);
   
@@ -113,5 +136,16 @@ export class FormComponent implements OnInit {
 
   }
 
+ /* saveConnId(connId: string, username: string) {
+      console.log(connId + " " + this.enteredUsername)
+      this.accountService.saveConnId(connId, username).subscribe();
+  } */
+
+
+
   //#endregion
 }
+
+
+
+

@@ -1,0 +1,38 @@
+<mat-card *ngIf="account" class="page" style=" margin-top: 80px;">
+  <div *ngIf="loggedInUsersUsername != account.username"  class="login-page" style=" margin-top: 10px;">
+    <mat-card class="mat-elevation-z12">
+      <mat-card-title style="text-align:center;">Contact user <b>{{account.username}}</b></mat-card-title>
+
+      <mat-card-content>
+        <form [formGroup]="messageForm" (ngSubmit)="send()">
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Your message</mat-label>
+            <textarea matInput style="height: 150px; max-height: 160px;" formControlName="Content"></textarea>
+            <mat-error *ngIf="messageForm.get('Content') && messageForm.get('Content')?.errors?.['required'] ">You can not send an empty message</mat-error>
+          </mat-form-field>
+          <button [disabled]="messageForm.invalid" type="submit" mat-raised-button color="primary" class="login-button">
+            Send
+          </button>
+
+
+        </form>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+  <div *ngIf="loggedInUsersUsername == account.username"  class="login-page" style=" margin-top: 10px;">
+    <mat-card class="mat-elevation-z12">
+      <mat-card-title style="text-align:center;">Hi <b>{{loggedInUsersUsername}}</b>, this is your adveritsement</mat-card-title>
+
+      <mat-card-content>
+        <button mat-raised-button color="primary" class="login-button" style="width: 50px;" (click)="returnHome()">
+            Back
+          </button>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+</mat-card>

@@ -43,6 +43,7 @@ export class NavigationComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('connectionId');
     this.checkIfLoggedInService.userAuthenticated(false);
   }
 

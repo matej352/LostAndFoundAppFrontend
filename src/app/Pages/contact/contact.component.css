@@ -1,0 +1,52 @@
+.login-page {
+    top: 0;
+    margin-top: 10px;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #fafafa;
+  }
+  
+  mat-card {
+    width: 80%;
+    margin: 7% auto;
+    border-radius: 8px;
+    height: 70%;
+  }
+  mat-form-field {
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  mat-error {
+    margin: 5% 5% auto;
+    width: 80%;
+    display: block;
+    margin-top: 5px;
+  }
+
+  mat-card-content {
+    margin-top: 20px;
+    
+  }
+  
+  .login-button {
+    height: 100%;
+    margin-top: 20px;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  mat-card-title {
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+

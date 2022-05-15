@@ -46,6 +46,7 @@ import { FormComponent } from './Pages/login/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { AdvertisementComponent } from './Pages/advertisement/advertisement.component';
 import { AdvertisementItemComponent } from './Pages/advertisement/advertisement-item/advertisement-item.component';
+import { ContactComponent } from './Pages/contact/contact.component';
 
 
 
@@ -67,6 +68,7 @@ export function getToken() {
     FormComponent,
     AdvertisementComponent,
     AdvertisementItemComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

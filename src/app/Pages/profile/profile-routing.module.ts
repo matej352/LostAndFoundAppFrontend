@@ -1,3 +1,4 @@
+import { MessagesComponent } from './messages/messages.component';
 import { ItemsComponent } from './items/items.component';
 import { GeneralComponent } from './general/general.component';
 import { ProfileComponent } from './profile.component';
@@ -19,6 +20,9 @@ const routes: Routes = [
       },
       {
         path: 'items/found', component: ItemsComponent
+      },
+      {
+        path: 'messages', component: MessagesComponent
       }
 
     ]

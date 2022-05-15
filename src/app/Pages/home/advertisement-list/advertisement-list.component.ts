@@ -22,6 +22,7 @@ export class AdvertisementListComponent implements OnInit {
 
   ngOnInit(): void {
     this.advertisements$ = this.advertisementService.getAllActive();
+    
   }
 
   private applyCategoryFilter(filterId: number) {
