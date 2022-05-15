@@ -50,6 +50,12 @@ export class NavigationComponent implements OnInit {
       return this.checkIfLoggedInService.getLoggedInUsersUsername();
   }
 
+  navigateHome(): void {
+    this.router.navigateByUrl('/404', { skipLocationChange: true }).then(() => {
+      this.router.navigate(["/home"]);
+  })
+  }
+
 
 
  

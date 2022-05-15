@@ -11,7 +11,8 @@ import { ResponsivityService } from 'src/app/Services/responsivity.service';
 })
 export class HomeComponent implements OnInit {
   mediaSubscription!: Subscription;
-  deviceXs!: boolean;
+  deviceXs: boolean = false;
+  public screenWidth: any;
 
   advertisements$!: Observable<AdvertisementWithItem[]>;
 
@@ -19,6 +20,11 @@ export class HomeComponent implements OnInit {
     private advertisementService: AdvertisementService,
     private responsivityService: ResponsivityService
   ) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <=  550 ) {
+      this.deviceXs = true;
+    }
+
     this.mediaSubscription = responsivityService
       .onchange()
       .subscribe((boolValue) => (this.deviceXs = boolValue));

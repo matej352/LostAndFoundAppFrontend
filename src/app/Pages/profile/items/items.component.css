@@ -45,6 +45,7 @@
     .example-card {
        margin: 0px;
        max-width: none;
+       margin-bottom: 20px;
     }
     .image {
         width: 320px;
