@@ -1,3 +1,4 @@
+import { AdvertisementCreateDTO } from './../DTOs/AdvertisementCreateDTO';
 import { Image } from './../Models/Image';
 import { AdvertisementWithItem } from './../Models/AdvertisementWithItem';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -67,6 +68,12 @@ export class AdvertisementService {
     return this.http.put<void>( `${this.restApiUrl}/advertisement/${advertisementId}`, advertisementId, {headers : headers});
   }
 
+
+  create(newAdvertisement: AdvertisementCreateDTO, username: string): Observable<Advertisement> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+
+    return this.http.post<Advertisement>( `${this.restApiUrl}/advertisement/${username}`, newAdvertisement, {headers : headers});
+  }
 
 
 }

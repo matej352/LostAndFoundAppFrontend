@@ -39,7 +39,7 @@
                             {{fileName || "No file uploaded yet."}}
             
                             <button mat-mini-fab color="primary" class="upload-btn"
-                                (click)="fileUpload.click()">
+                                (click)="fileUpload.click()" type="button">
                                     <mat-icon>attach_file</mat-icon>
                             </button>
             
@@ -76,7 +76,6 @@
                 <tr>    
                     <td colspan="2" class="content-center" style="padding: 35px;">    
                         <button mat-raised-button color="accent" type="submit">Submit</button>    
-                        <button mat-raised-button color="accent" style="margin-left: 10%;">Clear</button>    
                     </td>    
                 </tr>    
             </table>    

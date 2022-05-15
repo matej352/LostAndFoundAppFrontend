@@ -48,6 +48,7 @@ import { AdvertisementComponent } from './Pages/advertisement/advertisement.comp
 import { AdvertisementItemComponent } from './Pages/advertisement/advertisement-item/advertisement-item.component';
 
 
+
 export function getToken() {
   return localStorage.getItem("jwt")
 }
