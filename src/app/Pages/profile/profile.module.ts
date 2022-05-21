@@ -25,6 +25,8 @@ import { ProfileComponent } from './profile.component';
 import { GeneralComponent } from './general/general.component';
 import { ItemsComponent } from './items/items.component';
 import { MessagesComponent } from './messages/messages.component';
+import { SidebarComponent } from './messages/sidebar/sidebar.component';
+import { ChatComponent } from './messages/chat/chat.component';
 
 
 
@@ -34,6 +36,8 @@ import { MessagesComponent } from './messages/messages.component';
     GeneralComponent,
     ItemsComponent,
     MessagesComponent,
+    SidebarComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,

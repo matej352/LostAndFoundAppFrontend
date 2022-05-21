@@ -1,3 +1,4 @@
+import { UiService } from './../../../Services/ui.service';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 import { AccountService } from 'src/app/Services/account.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,9 @@ export class MessagesComponent implements OnInit {
 
   stiglo: boolean = false;
 
-  constructor(private accountService: AccountService, private checkIfLoggedInService: CheckIfLoggedInService) { }
+  constructor(private accountService: AccountService,
+              private checkIfLoggedInService: CheckIfLoggedInService,
+              private uiService: UiService) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -45,9 +48,15 @@ export class MessagesComponent implements OnInit {
     .catch(
       err => console.log('Error while establishing connection!')
     );
+
+
+    
      //register listener
      this.hubConnection.on("RecieveMessage", (message) => {
       console.log(message);
+
+      this.uiService.messageSent(message);
+
      })
 
 

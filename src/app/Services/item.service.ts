@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Item } from '../Models/Item';
 import { Observable } from 'rxjs';
-import { ItemCreateDTO } from '../DTOs/ItemCreateDto';
+import { ItemCreateDTO } from '../DTOs/ItemCreateDTO';
 
 @Injectable({
   providedIn: 'root'

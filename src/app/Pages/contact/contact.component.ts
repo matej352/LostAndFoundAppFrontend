@@ -113,10 +113,13 @@ export class ContactComponent implements OnInit {
 
   send() {
 
+    //dodat cu parametar kad je poslano
+    var date = new Date();
     let message = {
       content: this.messageForm.get('Content')?.value,
       recieverId: this.recieverId,
-      From: this.loggedInUsersUsername, 
+      From: this.loggedInUsersUsername,
+      //SendDateTime: date.getUTCDate(), 
     }
 
     console.log(message)

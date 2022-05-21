@@ -1,5 +1,7 @@
+import { Message } from './../Models/Message';
 import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { MessageSignalR } from '../Models/MessageSignalR';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,11 @@ export class UiService {
   private subject = new Subject<any>();
 
   private subjectForNavigation = new Subject<any>();
+
+  private subjectForChat = new Subject<any>();
+
+  private subcjetForNewSignalRMessage = new Subject<any>();
+
 
   categoryFilter(categoryId: number): void {
     this.subject.next(categoryId);
@@ -30,6 +37,28 @@ export class UiService {
   onUserLoggIn(): Observable<any> {
     return this.subjectForNavigation.asObservable();
   }
+
+
+
+  chatSelected(chatWith: string): void {
+    this.subjectForChat.next(chatWith);
+  }
+
+  onChatSelected(): Observable<any> {
+    return this.subjectForChat.asObservable();
+  }
+
+
+
+  messageSent(msg: MessageSignalR): void {
+    this.subcjetForNewSignalRMessage.next(msg);
+  }
+
+  onMessageRecieved(): Observable<any> {
+    return this.subcjetForNewSignalRMessage.asObservable();
+  }
+
+
 
 
 }

@@ -1,0 +1,33 @@
+<div class="sidebar">
+    <div class="row1">
+      <div class="sidebarHeader">
+        
+        <div class="actionsContainer">
+          
+        </div>
+      </div>
+    </div>
+  
+    <div id="sidebarContent">
+    
+  
+      <div *ngFor="let chatGroup of (groups$ | async)"
+        (click) = "chatGroupSelected(chatGroup.chatWith)"
+        class="conversation">
+        <div class="picture">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="content">
+          <div class="conversationHeader">
+            <div class="name">{{chatGroup.chatWith}}</div>
+            <div class="time">{{chatGroup.lastMessage.sendDateTime | date:'medium':'+0400'}}</div>
+          </div>
+          <div class="message">
+            {{chatGroup.lastMessage.content}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
