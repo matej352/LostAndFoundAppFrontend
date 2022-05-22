@@ -54,8 +54,13 @@ export class ChatComponent implements OnInit {
 
     this.subscriptionSignalRMessage = uiService.onMessageRecieved().subscribe( msg => {
       console.log("stigla poruka")
-      this.dateWhenMessageReceived = new Date()
-      this.newSignalRMessages.push(msg);
+      this.dateWhenMessageReceived = new Date();
+
+      //important, so user dont get messages from api when opening chat and those from signalR
+
+      if (this.chatWith) {
+        this.newSignalRMessages.push(msg);
+      }
       
     });
    }

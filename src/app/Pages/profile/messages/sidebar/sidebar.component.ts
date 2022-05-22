@@ -1,10 +1,11 @@
 import { UiService } from './../../../../Services/ui.service';
 import { MessageGroup } from './../../../../Models/MessageGroup';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MessageService } from './../../../../Services/message.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 import { Message } from 'src/app/Models/Message';
+import { MessageSignalR } from 'src/app/Models/MessageSignalR';
 
 
 @Component({
@@ -14,11 +15,27 @@ import { Message } from 'src/app/Models/Message';
 })
 export class SidebarComponent implements OnInit {
 
+  subscriptionSignalRLatestMessage!: Subscription;
+
+  newMessageWhileChatOpened: boolean = false;
+
+  newLatestMessage!: MessageSignalR;
+
+  dateWhenMessageReceived!: Date;
+
   loggedInUsersUsername!: string;
 
   groups$!: Observable<MessageGroup[]>;
 
-  constructor( private checkIfLoggedInService: CheckIfLoggedInService, private messageService: MessageService, private uiService: UiService) { }
+  constructor( private checkIfLoggedInService: CheckIfLoggedInService, private messageService: MessageService, private uiService: UiService) {
+
+    this.subscriptionSignalRLatestMessage = uiService.onMessageRecieved().subscribe( msg => {
+      
+      this.dateWhenMessageReceived = new Date()
+      this.newMessageWhileChatOpened = true;
+      this.newLatestMessage = msg;
+    });
+  }
 
   ngOnInit(): void {
 

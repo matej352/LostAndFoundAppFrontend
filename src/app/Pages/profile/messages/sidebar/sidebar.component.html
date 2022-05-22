@@ -20,9 +20,13 @@
         <div class="content">
           <div class="conversationHeader">
             <div class="name">{{chatGroup.chatWith}}</div>
-            <div class="time">{{chatGroup.lastMessage.sendDateTime | date:'medium':'+0400'}}</div>
+            <div class="time" *ngIf="newMessageWhileChatOpened" >{{dateWhenMessageReceived | date:'medium':'+0200'}}</div>
+            <div class="time" *ngIf="!newMessageWhileChatOpened" >{{chatGroup.lastMessage.sendDateTime | date:'medium':'+0400'}}</div>
           </div>
-          <div class="message">
+          <div class="message" *ngIf="newMessageWhileChatOpened">
+            {{newLatestMessage.content}}
+          </div>
+          <div class="message" *ngIf="!newMessageWhileChatOpened">
             {{chatGroup.lastMessage.content}}
           </div>
         </div>
