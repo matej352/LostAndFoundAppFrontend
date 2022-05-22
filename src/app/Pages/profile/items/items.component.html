@@ -67,11 +67,15 @@
        
       </mat-card-content>
       <mat-divider></mat-divider>
-      <mat-card-actions>
+      <mat-card-actions style="padding-bottom: 0px;">
         <p>
           <b>Loss date:</b> {{advertisement.item.lossDate | date}}
         </p>
       </mat-card-actions>
+      <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-button [routerLink] = "['/advertisement', advertisement.advertisementId]">DETAILS</button>
+    </mat-card-actions>
     </mat-card>
   </div>
 </div>
