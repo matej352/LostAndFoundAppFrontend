@@ -37,10 +37,14 @@
     <div id="smileyIcon">
     </div>
     <div id="textarea">
-      <textarea></textarea>
+      <textarea
+        [(ngModel)] = "typedMessageForSending" 
+      ></textarea>
     </div>
-    <div id="micIcon">
-      <mat-icon>send</mat-icon>
-    </div>
+    <button mat-button (click)="send()" [disabled]="!chatWith"> 
+      <div id="micIcon">
+        <mat-icon>send</mat-icon>
+      </div>
+    </button>
   </div>
 </div>

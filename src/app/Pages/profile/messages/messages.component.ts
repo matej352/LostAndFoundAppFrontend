@@ -1,3 +1,5 @@
+import { EventEmitterObject } from './../../../Models/EventEmitterObject';
+import { Account } from './../../../Models/Account';
 import { UiService } from './../../../Services/ui.service';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 import { AccountService } from 'src/app/Services/account.service';
@@ -15,6 +17,9 @@ export class MessagesComponent implements OnInit {
 
 
   loggedInUsersUsername!: string;
+
+  recieversAccount?: Account;
+  sendersAccount?: Account;
 
   hubConnection!: HubConnection;
 
@@ -58,7 +63,7 @@ export class MessagesComponent implements OnInit {
       this.uiService.messageSent(message);
 
      })
-
+     
 
 
   }
@@ -71,6 +76,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.hubConnection.stop();
+    console.log('Connection ended!');
   }
 
 
@@ -82,6 +88,57 @@ export class MessagesComponent implements OnInit {
       transport: HttpTransportType.WebSockets
     })
     .build();
+  }
+
+
+
+
+  async sendMessage(obj: EventEmitterObject) {
+
+    await this.getAccount(obj.recieversUsername);
+    await this.getAccountOfLoggedInUser(this.loggedInUsersUsername);
+
+    
+
+    if (this.recieversAccount && this.sendersAccount) {
+      let messageForService = {
+        content : obj.messageContent,
+        recieverId : this.recieversAccount.accountId,
+        From : this.sendersAccount.accountId,
+      }
+
+      let messageForSignalR = {
+        content : obj.messageContent,
+        recieverId : this.recieversAccount.accountId,
+        From : this.loggedInUsersUsername,
+      }
+
+
+      this.hubConnection.invoke("SendMessageAsync", messageForSignalR);  //radim sa razlicitim objektima poruka...
+
+       //bitno da se pojavi i poruka odmah korisniku koji ju je upravo poslao
+       this.uiService.messageSent(messageForService); 
+
+    }  
+
+  }
+
+  private async getAccount(username: string): Promise<void> {
+
+    await this.accountService.getAccount(username).toPromise().then(
+      res => {
+        this.recieversAccount = res;
+      }
+    );
+  }
+
+  private async getAccountOfLoggedInUser(username: string): Promise<void> {
+
+    await this.accountService.getAccount(username).toPromise().then(
+      res => {
+        this.sendersAccount = res;
+      }
+    );
   }
 
 }

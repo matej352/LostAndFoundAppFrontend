@@ -20,6 +20,7 @@ import {MatChipsModule} from '@angular/material/chips';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ProfileComponent } from './profile.component';
 import { GeneralComponent } from './general/general.component';
@@ -43,6 +44,7 @@ import { ChatComponent } from './messages/chat/chat.component';
     CommonModule,
     ProfileRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
    
 
 

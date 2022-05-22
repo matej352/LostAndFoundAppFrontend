@@ -2,7 +2,7 @@
 <div class="chatContainer">
   <app-sidebar></app-sidebar>
   <div class="chat">
-    <app-chat></app-chat>
+    <app-chat (sendClick)="sendMessage($event)"></app-chat>
   </div>
 </div>
 

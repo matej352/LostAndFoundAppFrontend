@@ -1,12 +1,14 @@
+import { EventEmitterObject } from './../../../../Models/EventEmitterObject';
 import { MessageSignalR } from './../../../../Models/MessageSignalR';
 import { Account } from './../../../../Models/Account';
 import { AccountService } from './../../../../Services/account.service';
 import { MessageService } from './../../../../Services/message.service';
 import { UiService } from './../../../../Services/ui.service';
 import { Subscription, Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 import { Message } from 'src/app/Models/Message';
+
 
 @Component({
   selector: 'app-chat',
@@ -14,6 +16,14 @@ import { Message } from 'src/app/Models/Message';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+
+
+  typedMessageForSending!: string;
+
+  @Output()
+  sendClick: EventEmitter<EventEmitterObject> = new EventEmitter();
+
+
 
   loggedInUsersUsername!: string;
 
@@ -71,6 +81,27 @@ export class ChatComponent implements OnInit {
       }
     );
   }
+
+
+
+
+
+
+
+  send(): void {
+
+    let obj = {
+      messageContent: this.typedMessageForSending,
+      recieversUsername: this.chatWith
+    };
+
+    this.sendClick.emit(obj);
+
+    this.typedMessageForSending = "";
+  }
+
+
+
 
 }
 
