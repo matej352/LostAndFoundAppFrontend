@@ -1,5 +1,5 @@
 <mat-card *ngIf="account" class="page" style=" margin-top: 80px;">
-  <div *ngIf="loggedInUsersUsername != account.username"  class="login-page" style=" margin-top: 10px;">
+  <div *ngIf="loggedInUsersUsername != account.username"  class="page" style=" margin-top: 10px;">
     <mat-card class="mat-elevation-z12">
       <mat-card-title style="text-align:center;">Contact user <b>{{account.username}}</b></mat-card-title>
 
@@ -27,7 +27,7 @@
       <mat-card-title style="text-align:center;">Hi <b>{{loggedInUsersUsername}}</b>, this is your adveritsement</mat-card-title>
 
       <mat-card-content>
-        <button mat-raised-button color="primary" class="login-button" style="width: 50px;" (click)="returnHome()">
+        <button mat-raised-button color="primary" class="back-button" style="width: 50px;" (click)="returnHome()">
             Back
           </button>
       </mat-card-content>

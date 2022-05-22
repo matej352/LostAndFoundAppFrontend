@@ -1,6 +1,11 @@
 .container {
-    width: 500px;
     height: 400px;
+}
+
+@media (max-width: 550px) {
+    .container {
+      height: 200px;
+    }
 }
 
 .map {
