@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="adv">
     <mat-card-header fxLayoutAlign="space-between center">
       <mat-chip-list aria-label="Dog selection">
       <mat-chip>
@@ -12,7 +12,7 @@
       <mat-card-subtitle> {{(adv)?.item?.category?.name}} </mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="imagePath"
-      alt="Photo of a Shiba Inu">
+      alt="photo">
     <mat-card-content>
       <p>
         <b>
@@ -23,7 +23,24 @@
         {{(adv)?.item?.description}}
       </p>
     </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content *ngIf="ownerAccount">
+      <p class = "firstP">
+        <b>Phone number:</b> {{ownerAccount.phoneNumber}}
+      </p>
+    </mat-card-content>
+    <mat-card-content *ngIf="ownerAccount">
+      <p>
+        <b>Email:</b> {{ownerAccount.email}}
+      </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <p class = "firstP">
+        <b>{{adv?.lost ? 'Loss date:' : 'Find date:'}}</b> {{ (adv.lost ? adv.item.lossDate : adv.item.findingDate)  | date:'mediumDate':'+0400'}}
+      </p>
+    </mat-card-content>
     <mat-card-actions>
-      <button mat-button>CONTACT USER</button>
+      <button mat-raised-button color="accent" [routerLink] = "['/contact', adv.accountId]" >CONTACT USER</button>
     </mat-card-actions>
   </mat-card>
