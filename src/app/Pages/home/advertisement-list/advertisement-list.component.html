@@ -25,7 +25,7 @@
     <mat-divider></mat-divider>
     <mat-card-actions>
       <p>
-        <b>{{advertisement.lost ? 'Loss date:' : 'Find date:'}}</b> {{ (advertisement.lost ? advertisement.item.lossDate : advertisement.item.findingDate)  | date}}
+        <b>{{advertisement.lost ? 'Loss date:' : 'Find date:'}}</b> {{ (advertisement.lost ? advertisement.item.lossDate : advertisement.item.findingDate)  | date:'mediumDate':'+0400'}}
       </p>
     </mat-card-actions>
     <mat-divider></mat-divider>

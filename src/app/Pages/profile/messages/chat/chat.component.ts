@@ -86,8 +86,6 @@ export class ChatComponent implements OnInit {
 
 
 
-
-
   send(): void {
 
     let obj = {

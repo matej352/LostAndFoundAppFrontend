@@ -15,6 +15,13 @@ export class ItemService {
 
 
   create(newItem: ItemCreateDTO): Observable<Item> {
+
+    if (newItem.findingDate) {
+     console.log(newItem.findingDate)
+    } else {
+      newItem.lossDate
+    }
+
     const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
 
     return this.http.post<Item>( `${this.restApiUrl}/Item`, newItem, {headers : headers});
