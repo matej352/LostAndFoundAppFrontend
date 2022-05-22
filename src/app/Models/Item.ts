@@ -9,4 +9,6 @@ export interface Item {
     lossDate: Date;
     AdvertisementId: number;
     category: Category;
+    locationLat: number;
+    locationLng: number;
 }

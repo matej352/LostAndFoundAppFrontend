@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -27,7 +29,6 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 
 
-
 import { DomSanitizer } from '@angular/platform-browser';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -47,6 +48,10 @@ import { FormsModule } from '@angular/forms';
 import { AdvertisementComponent } from './Pages/advertisement/advertisement.component';
 import { AdvertisementItemComponent } from './Pages/advertisement/advertisement-item/advertisement-item.component';
 import { ContactComponent } from './Pages/contact/contact.component';
+import { LocationAdvItemComponent } from './Pages/advertisement/advertisement-item/location-adv-item/location-adv-item.component';
+import { LocationPublishComponent } from './Pages/publish/publish/publish-form/location-publish/location-publish.component';
+
+
 
 
 
@@ -69,10 +74,13 @@ export function getToken() {
     AdvertisementComponent,
     AdvertisementItemComponent,
     ContactComponent,
+    LocationAdvItemComponent,
+    LocationPublishComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+
 
     //Mat
     MatToolbarModule,

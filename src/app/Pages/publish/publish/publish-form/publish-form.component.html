@@ -55,7 +55,7 @@
                             <mat-datepicker touchUi="true" #picker></mat-datepicker>    
                         </mat-form-field>    
                     </td>    
-                </tr>    
+                </tr>   
                 <tr>    
                     <td style="padding-top: 35px;">    
                         <span>Select item category</span><br><br>      
@@ -67,6 +67,13 @@
                             </mat-select>    
                         </mat-form-field>    
                     </td>    
+                </tr> 
+                <tr>
+                    <td colspan="2" style="padding-top: 35px;">
+                        <span>{{publishForm.get('lostOrFound')?.value == 'lost' ? 'Select location where you lost item' : 'Select location where you found item'}} (optional)</span><br><br>
+                        <app-location-publish (coordinationsSelected)="setCoordinates($event)"  class="demo-full-width"></app-location-publish>
+                    </td>
+                    
                 </tr>        
                 <tr>    
                     <td colspan="2">    

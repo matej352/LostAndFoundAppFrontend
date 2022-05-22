@@ -40,6 +40,9 @@
         <b>{{adv?.lost ? 'Loss date:' : 'Find date:'}}</b> {{ (adv.lost ? adv.item.lossDate : adv.item.findingDate)  | date:'mediumDate':'+0400'}}
       </p>
     </mat-card-content>
+
+    <app-location-adv-item *ngIf="adv.item.locationLat && adv.item.locationLng" [lat] = "adv.item.locationLat" [lng]="adv.item.locationLng"></app-location-adv-item>
+
     <mat-card-actions>
       <button mat-raised-button color="accent" [routerLink] = "['/contact', adv.accountId]" >CONTACT USER</button>
     </mat-card-actions>

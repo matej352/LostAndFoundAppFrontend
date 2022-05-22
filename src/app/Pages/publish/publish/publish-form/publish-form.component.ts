@@ -18,6 +18,10 @@ import { Item } from 'src/app/Models/Item';
 })
 export class PublishFormComponent implements OnInit {
 
+
+  locationLng!: number;
+  locationLat!: number;
+
   @Input()
   loggedInUsersUsername!: string;
 
@@ -100,7 +104,9 @@ export class PublishFormComponent implements OnInit {
       findingDate: this.publishForm.get('lostOrFound')?.value == "lost" ? null : this.publishForm.get('lossOrFoundDate')?.value,
       lossDate: this.publishForm.get('lostOrFound')?.value == "found" ? null : this.publishForm.get('lossOrFoundDate')?.value,
       advertisementId: this.advertisement?.advertisementId,
-      categoryId: this.publishForm.get('category')?.value
+      categoryId: this.publishForm.get('category')?.value,
+      locationLat: this.locationLat ? this.locationLat : undefined,
+      locationLng: this.locationLng ? this.locationLng : undefined,
     }
 
     this.itemService.create(newItem).toPromise().then(
@@ -136,6 +142,13 @@ export class PublishFormComponent implements OnInit {
         this.formData = new FormData();
         this.formData.append("thumbnail", file);
     }
+
+  }
+
+  setCoordinates(coordinates: any) {
+
+    this.locationLat = coordinates.lat;
+    this.locationLng = coordinates.lng;
 
   }
 

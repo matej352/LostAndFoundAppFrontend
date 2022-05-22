@@ -39,7 +39,7 @@ export class AdvertisementItemComponent implements OnInit {
     advertisementService.getAdvertisementWithItem(this.advertisementId).subscribe( {
       next: (a) => {
         this.adv = a;
-
+        
         //get account of owner of this advertisement
         this.getAccount(this.adv.accountId);
       },
