@@ -110,7 +110,8 @@ export class PublishFormComponent implements OnInit {
         //then create image (if provided)
         if (this.fileName) {
           this.saveImage();
-
+        } else {
+          this.redirect.navigate(['/home'])
         }  
       },
       err => {
