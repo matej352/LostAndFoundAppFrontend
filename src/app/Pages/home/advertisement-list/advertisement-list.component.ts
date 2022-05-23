@@ -1,3 +1,4 @@
+import { QueryOptions } from './../../../Models/QueryOptions';
 import { UiService } from './../../../Services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
@@ -6,6 +7,7 @@ import { AdvertisementService } from 'src/app/Services/advertisement.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PageEvent } from '@angular/material/paginator';
 
+
 @Component({
   selector: 'app-advertisement-list',
   templateUrl: './advertisement-list.component.html',
@@ -13,12 +15,12 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class AdvertisementListComponent implements OnInit {
 
-  advCount: number = 0;
+  advCount?: number;
 
   advertisements$!:Observable<AdvertisementWithItem[]>;
 
 
-  advertisements!: AdvertisementWithItem[]
+  advertisements?: AdvertisementWithItem[]
 
 
   subscription!: Subscription;
@@ -28,12 +30,65 @@ export class AdvertisementListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.advertisements$ = this.advertisementService.getAllActive();
+    
+    this.getAllCount();
    
   }
 
+
+  async getAllCount() {
+    await this.advertisementService.getAllActiveCount().toPromise().then(
+      res => {
+        this.advCount = res;
+
+        let query = {
+          startIndex: 0,
+          endIndex: 6
+        };
+
+        this.getAllActive(query);
+        
+      });
+  }
+
+
+  async getAllActive(query: QueryOptions) {
+    await this.advertisementService.getAllActive(query).toPromise().then(
+      res => {
+        this.advertisements = res;
+        
+      });
+  }
+
   private applyCategoryFilter(filterId: number) {
-    this.advertisements$ = this.advertisementService.getAllActiveCategoryFilter(filterId);
+
+    let query = {
+      startIndex: 0,
+      endIndex: 6
+    };
+
+    this.advertisementService.getAllActiveCategoryFilter(filterId, query).toPromise().then(
+      res => {
+                  this.advertisements = res;
+                  this.getAllCategoryFilterCount(filterId);
+
+      }
+    );
+  }
+
+  async getAllCategoryFilterCount(categoryId: number) {
+    if (categoryId == -1) {
+      await this.advertisementService.getAllActiveCount().toPromise().then(
+        res => {
+          this.advCount = res; 
+        });
+    } else {
+      await this.advertisementService.getAllActiveCategoryFilterCount(categoryId).toPromise().then(
+        res => {
+          this.advCount = res; 
+        });
+    }
+   
   }
 
   public prepareSource(data: string): SafeResourceUrl {
@@ -78,8 +133,19 @@ export class AdvertisementListComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent) {
-    console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (this.advCount && endIndex > this.advCount) {
+        endIndex = this.advCount;
+    }
+    let query = {
+      startIndex: startIndex,
+      endIndex: endIndex
+    };
+    this.getAllActive(query);
   }
+
+  
 
   
 

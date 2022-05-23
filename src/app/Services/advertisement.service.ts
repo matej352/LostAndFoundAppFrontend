@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take, catchError, throwError } from 'rxjs';
 import { Advertisement } from '../Models/Advertisement';
+import { QueryOptions } from '../Models/QueryOptions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,17 @@ export class AdvertisementService {
   constructor(private http: HttpClient) { }
 
 
-  getAllActive(): Observable<AdvertisementWithItem[]> {
-    return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement`);
+  getAllActiveCount(): Observable<number> {
+    return this.http.get<number>( `${this.restApiUrl}/advertisement/count`);
+  }
+
+  getAllActiveCategoryFilterCount(categoryId: number): Observable<number> {
+    return this.http.get<number>( `${this.restApiUrl}/advertisement/count/${categoryId}`);
+  }
+
+
+  getAllActive(query: QueryOptions): Observable<AdvertisementWithItem[]> {
+    return this.http.post<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement/getAll`, query);
   }
 
   getAllFromUser(username: string): Observable<AdvertisementWithItem[]> {
@@ -26,12 +36,18 @@ export class AdvertisementService {
   }
 
 
-  getAllActiveCategoryFilter(categoryId: number): Observable<AdvertisementWithItem[]> {
+  getAllActiveCategoryFilter(categoryId: number, query: QueryOptions): Observable<AdvertisementWithItem[]> {
 
     if (categoryId == -1) {
-        return this.getAllActive();
+
+        let query = {
+          startIndex: 0,
+          endIndex: 6
+        };
+
+        return this.getAllActive(query);
     } else {
-      return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsCategoryFilter/${categoryId}`);
+      return this.http.post<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsCategoryFilter/${categoryId}`, query);
     }
   }
 

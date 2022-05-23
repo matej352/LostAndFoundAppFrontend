@@ -1,5 +1,4 @@
 import { AdvertisementService } from './../../Services/advertisement.service';
-import { AdvertisementWithItem } from './../../Models/AdvertisementWithItem';
 import { Observable, Subscription } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { ResponsivityService } from 'src/app/Services/responsivity.service';
@@ -13,8 +12,6 @@ export class HomeComponent implements OnInit {
   mediaSubscription!: Subscription;
   deviceXs: boolean = false;
   public screenWidth: any;
-
-  advertisements$!: Observable<AdvertisementWithItem[]>;
 
   constructor(
     private advertisementService: AdvertisementService,
@@ -31,7 +28,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.advertisements$ = this.advertisementService.getAllActive();
   }
 
   ngOnDestroy() {
