@@ -1,4 +1,6 @@
-<div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+<div *ngIf="(advertisements$| async)" >
+  <div  *ngIf="(advertisements$| async)?.length != 0" class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+
   <mat-card class="example-card" *ngFor="let advertisement of (advertisements$ |async)">
     <mat-card-header fxLayoutAlign="space-between center">
       <mat-chip-list aria-label="Dog selection">
@@ -34,4 +36,23 @@
       <button mat-button [routerLink] = "['/contact', advertisement.accountId]">CONTACT USER</button>
     </mat-card-actions>
   </mat-card>
+
+</div>
+
+
+<div class="for-center" *ngIf="(advertisements$| async)?.length == 0" >
+  <div class="center">
+    <p style="font-size: 30px;" class="p-center">No advertisements</p>
+  </div>
+</div>
+
+</div>
+
+
+<div class="for-center" *ngIf="!(advertisements$| async)" >
+  <div class="center">
+    <div style="margin-left: 10px;">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
 </div>

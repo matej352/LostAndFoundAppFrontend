@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { AdvertisementWithItem } from 'src/app/Models/AdvertisementWithItem';
 import { AdvertisementService } from 'src/app/Services/advertisement.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-advertisement-list',
@@ -12,7 +13,13 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class AdvertisementListComponent implements OnInit {
 
+  advCount: number = 0;
+
   advertisements$!:Observable<AdvertisementWithItem[]>;
+
+
+  advertisements!: AdvertisementWithItem[]
+
 
   subscription!: Subscription;
 
@@ -22,7 +29,7 @@ export class AdvertisementListComponent implements OnInit {
 
   ngOnInit(): void {
     this.advertisements$ = this.advertisementService.getAllActive();
-    
+   
   }
 
   private applyCategoryFilter(filterId: number) {
@@ -68,6 +75,10 @@ export class AdvertisementListComponent implements OnInit {
     counter--;
    
     return counter;
+  }
+
+  onPageChange(event: PageEvent) {
+    console.log(event);
   }
 
   
