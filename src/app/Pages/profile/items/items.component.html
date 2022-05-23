@@ -1,81 +1,147 @@
-<div *ngIf="found" class="flex-container">
-  <div *ngFor="let advertisement of (advertisements$ |async)" class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-    <mat-card *ngIf="advertisement.found" class="example-card" >
-      <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
+<!--FOUND ITEMS-->
+
+<div *ngIf="found && advertisements">
+  <div *ngIf="foundItemsCount != 0" class="flex-container">
+    <div *ngFor="let advertisement of advertisements" class="example-sidenav-content" fxLayout="row wrap"
+      fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+      <mat-card *ngIf="advertisement.found" class="example-card">
+        <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
       justify-content: space-between;">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value = "{{advertisement.status ? 'active' : 'resolved'}}" >
-          <mat-button-toggle value="active"  (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active</mat-button-toggle>
-          <mat-button-toggle value="resolved" (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved</mat-button-toggle>
-        </mat-button-toggle-group>
-        <mat-chip-list aria-label="Dog selection">
-        <mat-chip>
-          {{advertisement.lost ? 'Lost' : 'Found'}}
-        </mat-chip>
-      </mat-chip-list>
-      </div>
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-        <mat-card-title>{{advertisement.item.title}}</mat-card-title>
-        <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
-      </mat-card-header>
-      <img class="image" *ngIf="!advertisement.item.imageData"  mat-card-image src = "./../../../../assets/img/noImage.png">
-      <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image [src] = "prepareSource(advertisement.item.imageData)">
-      <mat-card-content>
-        <div class="description-container">
-          <p>
-            {{advertisement.item.description}}
-          </p>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+            value="{{advertisement.status ? 'active' : 'resolved'}}">
+            <mat-button-toggle value="active"
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active
+            </mat-button-toggle>
+            <mat-button-toggle value="resolved"
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-chip-list aria-label="Dog selection">
+            <mat-chip>
+              {{advertisement.lost ? 'Lost' : 'Found'}}
+            </mat-chip>
+          </mat-chip-list>
         </div>
-      </mat-card-content>
-      <mat-divider></mat-divider>
-      <mat-card-actions>
-        <p>
-          <b>Find date:</b> {{advertisement.item.findingDate | date}}
-        </p>
-      </mat-card-actions>
-    </mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+          <mat-card-title>{{advertisement.item.title}}</mat-card-title>
+          <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="image" *ngIf="!advertisement.item.imageData" mat-card-image
+          src="./../../../../assets/img/noImage.png">
+        <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image
+          [src]="prepareSource(advertisement.item.imageData)">
+        <mat-card-content>
+          <div class="description-container">
+            <p>
+              {{advertisement.item.description}}
+            </p>
+          </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions  style="padding-bottom: 0px;">
+          <p>
+            <b>Find date:</b> {{advertisement.item.findingDate | date}}
+          </p>
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-button [routerLink]="['/advertisement', advertisement.advertisementId]">DETAILS</button>
+        </mat-card-actions>
+      </mat-card>
+     </div>
+    </div>
+
+
+    <div class="for-center" *ngIf="foundItemsCount == 0">
+      <div class="center" style="width: 333px;">
+        <p style="font-size: 22px;" class="p-center">You don't have any found items</p>
+      </div>
+    </div>
+
+</div>
+
+<div class="for-center" *ngIf="!advertisements && found">
+  <div class="center">
+    <div style="margin-left: 10px;">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>
-<div *ngIf="!found" class="flex-container">
-  <div *ngFor="let advertisement of (advertisements$ |async)" class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-    <mat-card *ngIf="advertisement.lost" class="example-card" >
-      <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
+
+
+
+
+
+
+
+<!--LOST ITEMS-->
+
+<div *ngIf="!found && advertisements">
+  <div *ngIf="lostItemsCount != 0" class="flex-container">
+    <div *ngFor="let advertisement of advertisements" class="example-sidenav-content" fxLayout="row wrap"
+      fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+      <mat-card *ngIf="advertisement.lost" class="example-card">
+        <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
       justify-content: space-between;">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value = "{{advertisement.status ? 'active' : 'resolved'}}" >
-          <mat-button-toggle value="active"  (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active</mat-button-toggle>
-          <mat-button-toggle value="resolved" (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved</mat-button-toggle>
-        </mat-button-toggle-group>
-        <mat-chip-list aria-label="Dog selection">
-        <mat-chip>
-          {{advertisement.lost ? 'Lost' : 'Found'}}
-        </mat-chip>
-      </mat-chip-list>
-      </div>
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
-        <mat-card-title>{{advertisement.item.title}}</mat-card-title>
-        <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
-      </mat-card-header>
-      <img class="image" *ngIf="!advertisement.item.imageData"  mat-card-image src = "./../../../../assets/img/noImage.png">
-      <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image [src] = "prepareSource(advertisement.item.imageData)">
-      <mat-card-content>
-        <div class="description-container">
-          <p>
-            {{advertisement.item.description}}
-          </p>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+            value="{{advertisement.status ? 'active' : 'resolved'}}">
+            <mat-button-toggle value="active"
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active
+            </mat-button-toggle>
+            <mat-button-toggle value="resolved"
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-chip-list aria-label="Dog selection">
+            <mat-chip>
+              {{advertisement.lost ? 'Lost' : 'Found'}}
+            </mat-chip>
+          </mat-chip-list>
         </div>
-       
-      </mat-card-content>
-      <mat-divider></mat-divider>
-      <mat-card-actions style="padding-bottom: 0px;">
-        <p>
-          <b>Loss date:</b> {{advertisement.item.lossDate | date}}
-        </p>
-      </mat-card-actions>
-      <mat-divider></mat-divider>
-    <mat-card-actions>
-      <button mat-button [routerLink] = "['/advertisement', advertisement.advertisementId]">DETAILS</button>
-    </mat-card-actions>
-    </mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+          <mat-card-title>{{advertisement.item.title}}</mat-card-title>
+          <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="image" *ngIf="!advertisement.item.imageData" mat-card-image
+          src="./../../../../assets/img/noImage.png">
+        <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image
+          [src]="prepareSource(advertisement.item.imageData)">
+        <mat-card-content>
+          <div class="description-container">
+            <p>
+              {{advertisement.item.description}}
+            </p>
+          </div>
+
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="padding-bottom: 0px;">
+          <p>
+            <b>Loss date:</b> {{advertisement.item.lossDate | date}}
+          </p>
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-button [routerLink]="['/advertisement', advertisement.advertisementId]">DETAILS</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="for-center" *ngIf="lostItemsCount == 0">
+    <div class="center" style="width: 333px;">
+      <p style="font-size: 22px;" class="p-center">You don't have any lost items</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="for-center" *ngIf="!advertisements && !found">
+  <div class="center">
+    <div style="margin-left: 10px;">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>

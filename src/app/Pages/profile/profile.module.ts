@@ -17,7 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips'; 
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -62,6 +62,7 @@ import { ChatComponent } from './messages/chat/chat.component';
     MatRadioModule,
     MatInputModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
 
 
     

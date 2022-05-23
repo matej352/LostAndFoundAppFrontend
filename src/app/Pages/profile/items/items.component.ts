@@ -17,7 +17,10 @@ export class ItemsComponent implements OnInit {
 
   public found!: boolean;
 
-  advertisements$!:Observable<AdvertisementWithItem[]>;
+  advertisements!:AdvertisementWithItem[];
+
+  lostItemsCount: number = 0;
+  foundItemsCount: number = 0;
 
   constructor(public checkIfLoggedInService: CheckIfLoggedInService,
      private router: Router, 
@@ -28,7 +31,17 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.loggedInUsersUsername = this.getLoggedInUserName();
     this.found = this.checkLostOrFound();
-    this.advertisements$ = this.advertisementService.getAllFromUser(this.loggedInUsersUsername);
+    this.advertisementService.getAllFromUser(this.loggedInUsersUsername).subscribe({
+      next: (res) => {
+        this.advertisements = res
+      },
+      complete: () => {
+          this.lostItemsCount = this.advertisements.filter(a => a.lost == 1).length;
+          this.foundItemsCount = this.advertisements.filter(a => a.found == 1).length;
+      }
+
+      
+    });
 
   }
 

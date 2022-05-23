@@ -53,3 +53,44 @@
         
   }
 
+
+
+
+  .for-center {
+    width: 450px;
+    padding: 163px;
+  }
+
+  @media (max-width: 1000px) {
+    .for-center {
+      
+      padding: 100px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .for-center {
+      
+      padding: 26px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .for-center {
+      width: 300px;
+      padding: 0px;
+    }
+  }
+
+ 
+
+  .center {
+    margin: auto auto;
+    width: 255px;
+    margin-top: 16%;
+  }
+
+  .p-center {
+    text-align: center;
+    line-height: 100px;
+   }
