@@ -1,0 +1,72 @@
+<div *ngIf="advertisements">
+<div *ngIf="itemsCount != 0" class="flex-container">
+    <div *ngFor="let advertisement of advertisements" class="example-sidenav-content" fxLayout="row wrap"
+      fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+      <mat-card *ngIf="advertisement.lost" class="example-card">
+        <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
+      justify-content: space-between;">
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+            value="{{advertisement.status ? 'active' : 'resolved'}}" disabled="true">
+            <mat-button-toggle value="active">Unresolved
+            </mat-button-toggle>
+            <mat-button-toggle value="resolved">Resolved
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-chip-list aria-label="Dog selection">
+            <mat-chip>
+              {{advertisement.lost ? 'Lost' : 'Found'}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{advertisement.item.title}}</mat-card-title>
+          <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="image" *ngIf="!advertisement.item.imageData" mat-card-image
+          src="./../../../../assets/img/noImage.png">
+        <img class="image" *ngIf="advertisement.item.imageData != null" mat-card-image
+          [src]="prepareSource(advertisement.item.imageData)">
+        <mat-card-content>
+          <div class="description-container">
+            <p>
+              {{prepareShortDescription(advertisement.item.description)}}
+            </p>
+          </div>
+
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="padding-bottom: 0px;">
+          <p>
+            <b>Loss date:</b> {{advertisement.item.lossDate | date}}
+          </p>
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="onReactivate(advertisement.advertisementId)">REACTIVATE</button>
+          <div style="display: inline; font-size: 12px;">
+            <p style="display: inline;">
+              Advertisement expired on:
+              <b>{{advertisement.expirationDate | date:'mediumDate':'+0400'}}</b>
+            </p>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="for-center" *ngIf="itemsCount == 0">
+    <div class="center" style="width: 333px;">
+      <p style="font-size: 22px;" class="p-center">You don't have any expired advertisements.</p>
+    </div>
+  </div>
+
+</div>
+
+
+  <div class="for-center" *ngIf="!advertisements">
+    <div class="center">
+      <div style="margin-left: 10px;">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>

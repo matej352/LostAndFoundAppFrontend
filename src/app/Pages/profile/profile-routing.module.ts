@@ -1,3 +1,4 @@
+import { InactiveItemsComponent } from './inactive-items/inactive-items.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ItemsComponent } from './items/items.component';
 import { GeneralComponent } from './general/general.component';
@@ -23,6 +24,9 @@ const routes: Routes = [
       },
       {
         path: 'messages', component: MessagesComponent
+      },
+      {
+        path: 'items/unactive', component: InactiveItemsComponent
       }
 
     ]

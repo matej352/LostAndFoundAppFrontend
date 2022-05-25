@@ -26,17 +26,22 @@
           
       
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}">
-            <mat-icon>home</mat-icon>
+           
             <span>Details</span>
           </button>
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/lost">
-            <mat-icon>mood_bad</mat-icon>
+          
             <span>Items I have lost</span>
           </button>
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/found">
-            <mat-icon>mood</mat-icon>
+           
             <span>Items I have found</span>
           </button>
+          <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/unactive">
+          
+            <span style="color: #ff4081;">Expired advertisements</span>
+          </button>
+         
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/messages">
             <mat-icon>mail_outline</mat-icon>
             <span>Messages</span>

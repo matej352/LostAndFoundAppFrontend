@@ -28,6 +28,7 @@ import { ItemsComponent } from './items/items.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SidebarComponent } from './messages/sidebar/sidebar.component';
 import { ChatComponent } from './messages/chat/chat.component';
+import { InactiveItemsComponent } from './inactive-items/inactive-items.component';
 
 
 
@@ -39,6 +40,7 @@ import { ChatComponent } from './messages/chat/chat.component';
     MessagesComponent,
     SidebarComponent,
     ChatComponent,
+    InactiveItemsComponent,
   ],
   imports: [
     CommonModule,

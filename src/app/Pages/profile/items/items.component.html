@@ -10,7 +10,7 @@
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
             value="{{advertisement.status ? 'active' : 'resolved'}}">
             <mat-button-toggle value="active"
-              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Unresolved
             </mat-button-toggle>
             <mat-button-toggle value="resolved"
               (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved
@@ -23,7 +23,6 @@
           </mat-chip-list>
         </div>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
           <mat-card-title>{{advertisement.item.title}}</mat-card-title>
           <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
         </mat-card-header>
@@ -34,7 +33,7 @@
         <mat-card-content>
           <div class="description-container">
             <p>
-              {{advertisement.item.description}}
+              {{prepareShortDescription(advertisement.item.description)}}
             </p>
           </div>
         </mat-card-content>
@@ -47,6 +46,15 @@
         <mat-divider></mat-divider>
         <mat-card-actions>
           <button mat-button [routerLink]="['/advertisement', advertisement.advertisementId]">DETAILS</button>
+          <div style="display: inline; font-size: 12px;">
+            <p *ngIf="advertisement.status"  style="display: inline;">
+              Advertisement active until:
+              <b>{{advertisement.expirationDate | date:'mediumDate':'+0400'}}</b>
+            </p>
+            <p *ngIf="!advertisement.status"  style="display: inline;">
+              Advertisement resolved
+            </p>
+          </div>
         </mat-card-actions>
       </mat-card>
      </div>
@@ -87,7 +95,7 @@
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
             value="{{advertisement.status ? 'active' : 'resolved'}}">
             <mat-button-toggle value="active"
-              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Active
+              (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'active')">Unresolved
             </mat-button-toggle>
             <mat-button-toggle value="resolved"
               (click)="changeStatus(advertisement.advertisementId, advertisement.status, 'resolved')">Resolved
@@ -100,7 +108,6 @@
           </mat-chip-list>
         </div>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
           <mat-card-title>{{advertisement.item.title}}</mat-card-title>
           <mat-card-subtitle>{{advertisement.item.category.name}}</mat-card-subtitle>
         </mat-card-header>
@@ -111,7 +118,7 @@
         <mat-card-content>
           <div class="description-container">
             <p>
-              {{advertisement.item.description}}
+              {{prepareShortDescription(advertisement.item.description)}}
             </p>
           </div>
 
@@ -125,6 +132,15 @@
         <mat-divider></mat-divider>
         <mat-card-actions>
           <button mat-button [routerLink]="['/advertisement', advertisement.advertisementId]">DETAILS</button>
+          <div style="display: inline; font-size: 12px;">
+            <p *ngIf="advertisement.status"  style="display: inline;">
+              Advertisement active until:
+              <b>{{advertisement.expirationDate | date:'mediumDate':'+0400'}}</b>
+            </p>
+            <p *ngIf="!advertisement.status"  style="display: inline;">
+              Advertisement resolved
+            </p>
+          </div>
         </mat-card-actions>
       </mat-card>
     </div>

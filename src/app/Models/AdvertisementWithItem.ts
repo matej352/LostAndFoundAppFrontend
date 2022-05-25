@@ -4,6 +4,7 @@ export interface AdvertisementWithItem {
      accountId: number;
      advertisementId: number;
      creationDate: Date;
+     expirationDate: Date;
      lost: number;
      found: number;
      item: Item

@@ -35,6 +35,11 @@ export class AdvertisementService {
     return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetAdvertisementsFromUser/${username}`, {headers : headers});
   }
 
+  getAllInactiveFromUser(username: string): Observable<AdvertisementWithItem[]> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+    return this.http.get<AdvertisementWithItem[]>( `${this.restApiUrl}/Advertisement/GetInactiveAdvertisementsFromUser/${username}`, {headers : headers});
+  }
+
 
   getAllActiveCategoryFilter(categoryId: number, query: QueryOptions): Observable<AdvertisementWithItem[]> {
 
@@ -82,6 +87,12 @@ export class AdvertisementService {
     const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
 
     return this.http.put<void>( `${this.restApiUrl}/advertisement/${advertisementId}`, advertisementId, {headers : headers});
+  }
+
+  reactivateAdv(advertisementId: number): Observable<Advertisement> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+
+    return this.http.get<Advertisement>( `${this.restApiUrl}/advertisement/reactivate/${advertisementId}`, {headers : headers});
   }
 
 
