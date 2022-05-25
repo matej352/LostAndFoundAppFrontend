@@ -21,7 +21,7 @@
           />
       
           <h4 class="name">{{(account$ | async)?.firstName + " " + (account$ | async)?.lastName}}</h4>
-          <p class="designation">Standard user</p>
+          <p class="designation">{{(account$ | async)?.role == 0 ? "Standard user" : "Administrator" }}</p>
       
           
       

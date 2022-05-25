@@ -45,6 +45,14 @@
     margin: 20px auto;
   }
 
+  .send-button {
+    height: 100%;
+    margin-top: 20px;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+  }
+
   mat-card-title {
     margin-bottom: 30px;
     padding-top: 20px;

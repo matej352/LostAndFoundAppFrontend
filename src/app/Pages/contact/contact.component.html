@@ -11,7 +11,7 @@
             <textarea matInput style="height: 150px; max-height: 160px;" formControlName="Content"></textarea>
             <mat-error *ngIf="messageForm.get('Content') && messageForm.get('Content')?.errors?.['required'] ">You can not send an empty message</mat-error>
           </mat-form-field>
-          <button [disabled]="messageForm.invalid" type="submit" mat-raised-button color="primary" class="login-button">
+          <button [disabled]="messageForm.invalid" type="submit" mat-raised-button color="primary" class="send-button">
             Send
           </button>
 
