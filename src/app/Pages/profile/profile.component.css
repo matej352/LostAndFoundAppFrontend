@@ -85,3 +85,8 @@
     margin: 0px;
     flex: 1 2;
   }
+
+  img {
+    box-sizing: border-box;
+    object-fit: cover;
+  }

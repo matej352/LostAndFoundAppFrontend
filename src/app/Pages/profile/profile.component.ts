@@ -1,9 +1,11 @@
+import { AccountService } from 'src/app/Services/account.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
-import { delay } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
+import { Account } from 'src/app/Models/Account';
 
 @UntilDestroy()
 @Component({
@@ -15,18 +17,26 @@ export class ProfileComponent implements OnInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  account$!: Observable<Account>;
+
   public loggedInUsersUsername!: string;
 
 
-  constructor(private observer: BreakpointObserver, public checkIfLoggedInService: CheckIfLoggedInService) {}
+  constructor(private observer: BreakpointObserver, public checkIfLoggedInService: CheckIfLoggedInService, private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.loggedInUsersUsername = this.getLoggedInUserName()
+    this.getAcount(this.loggedInUsersUsername);
+
   }
 
 
   getLoggedInUserName(): any {
     return this.checkIfLoggedInService.getLoggedInUsersUsername();
+  }
+
+  getAcount(username: string) {
+    this.account$ = this.accountService.getAccount(username);
   }
 
 
