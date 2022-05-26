@@ -21,6 +21,10 @@ export class AdvertisementService {
     return this.http.get<number>( `${this.restApiUrl}/advertisement/count`);
   }
 
+  getAllActiveAndExpiredCount(): Observable<number> {
+    return this.http.get<number>( `${this.restApiUrl}/advertisement/allcount`);
+  }
+
   getAllActiveCategoryFilterCount(categoryId: number): Observable<number> {
     return this.http.get<number>( `${this.restApiUrl}/advertisement/count/${categoryId}`);
   }
@@ -28,6 +32,12 @@ export class AdvertisementService {
 
   getAllActive(query: QueryOptions): Observable<AdvertisementWithItem[]> {
     return this.http.post<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement/getAll`, query);
+  }
+
+  //both active and expored
+  getAll(query: QueryOptions): Observable<AdvertisementWithItem[]> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+    return this.http.post<AdvertisementWithItem[]>( `${this.restApiUrl}/advertisement/getAllAndExpired`, query , {headers : headers});
   }
 
   getAllFromUser(username: string): Observable<AdvertisementWithItem[]> {
@@ -100,6 +110,12 @@ export class AdvertisementService {
     const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
 
     return this.http.post<Advertisement>( `${this.restApiUrl}/advertisement/${username}`, newAdvertisement, {headers : headers});
+  }
+
+  deleteAdvertisement(advId: number): Observable<void> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+
+    return this.http.delete<void>( `${this.restApiUrl}/advertisement/${advId}`, {headers : headers});
   }
 
 

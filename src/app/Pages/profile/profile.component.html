@@ -26,20 +26,22 @@
           
       
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}">
-           
             <span>Details</span>
           </button>
-          <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/lost">
-          
+          <button *ngIf="(account$ | async)?.role != 1" mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/lost">
             <span>Items I have lost</span>
           </button>
-          <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/found">
-           
+          <button  *ngIf="(account$ | async)?.role != 1" mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/found">
             <span>Items I have found</span>
           </button>
-          <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/unactive">
-          
+          <button  *ngIf="(account$ | async)?.role != 1"  mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/items/unactive">
             <span style="color: #ff4081;">Expired advertisements</span>
+          </button>
+          <button  *ngIf="(account$ | async)?.role == 1" mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/manage/items">
+            <span>Manage items</span>
+          </button>
+          <button  *ngIf="(account$ | async)?.role == 1" mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/manage/accounts">
+            <span>Manage accounts</span>
           </button>
          
           <button mat-button class="menu-button" routerLink="/profile/{{loggedInUsersUsername}}/messages">
@@ -48,7 +50,7 @@
           </button>
       
         </mat-sidenav>
-        <mat-sidenav-content>
+        <mat-sidenav-content style="overflow: unset;">
           <div class="content mat-elevation-z8">
             <router-outlet></router-outlet>  
           </div>

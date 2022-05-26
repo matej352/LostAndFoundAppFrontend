@@ -1,3 +1,5 @@
+import { ManageItemsComponent } from './manage-items/manage-items.component';
+import { ManageAccountsComponent } from './manage-accounts/manage-accounts.component';
 import { InactiveItemsComponent } from './inactive-items/inactive-items.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ItemsComponent } from './items/items.component';
@@ -5,6 +7,7 @@ import { GeneralComponent } from './general/general.component';
 import { ProfileComponent } from './profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuardService } from 'src/app/Guards/role-guard.service';
 
 const routes: Routes = [
   {
@@ -27,6 +30,12 @@ const routes: Routes = [
       },
       {
         path: 'items/unactive', component: InactiveItemsComponent
+      },
+      {
+        path: 'manage/accounts', component: ManageAccountsComponent, canActivate: [RoleGuardService]
+      },
+      {
+        path: 'manage/items', component: ManageItemsComponent, canActivate: [RoleGuardService]
       }
 
     ]

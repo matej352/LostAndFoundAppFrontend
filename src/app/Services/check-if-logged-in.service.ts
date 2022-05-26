@@ -44,6 +44,17 @@ export class CheckIfLoggedInService {
    
   }
 
+  getLoggedInUsersRole(): any {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      const tokenClaims = JSON.parse(window.atob(token.split('.')[1]));
+      return tokenClaims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    } else {
+      this._isLoggedIn$.next(false);
+    }
+   
+  }
+
 
 
 }

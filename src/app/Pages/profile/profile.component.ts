@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   account$!: Observable<Account>;
 
+
   public loggedInUsersUsername!: string;
 
 

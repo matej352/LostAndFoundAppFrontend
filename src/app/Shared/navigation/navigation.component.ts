@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 import { ResponsivityService } from 'src/app/Services/responsivity.service';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/Enums/Role';
 
 @Component({
   selector: 'app-navigation',
@@ -18,6 +19,7 @@ export class NavigationComponent implements OnInit {
   deviceXs!: boolean;
 
   public loggedInUsersUsername!: string;
+  public loggedInUsersRole!: string;
 
   constructor(
     public checkIfLoggedInService: CheckIfLoggedInService,
@@ -33,7 +35,8 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loggedInUsersUsername = this.getLoggedInUserName()
+    this.loggedInUsersUsername = this.getLoggedInUserName();
+    this.loggedInUsersRole = this.getLoggedInUserRole();
   }
 
   ngOnDestroy() {
@@ -51,10 +54,18 @@ export class NavigationComponent implements OnInit {
       return this.checkIfLoggedInService.getLoggedInUsersUsername();
   }
 
+  getLoggedInUserRole(): any {
+    return this.checkIfLoggedInService.getLoggedInUsersRole();
+  }
+
   navigateHome(): void {
     this.router.navigateByUrl('/404', { skipLocationChange: true }).then(() => {
       this.router.navigate(["/home"]);
   })
+  }
+
+  check(): string {
+    return "Admin";
   }
 
 

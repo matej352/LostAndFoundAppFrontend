@@ -1,10 +1,10 @@
 <div *ngIf="advertisements">
-<div *ngIf="itemsCount != 0" class="flex-container">
+  <div *ngIf="itemsCount != 0" class="flex-container">
     <div *ngFor="let advertisement of advertisements" class="example-sidenav-content" fxLayout="row wrap"
       fxLayout.xs="column" fxLayoutAlign="space-evenly center">
       <mat-card class="example-card">
         <div fxLayoutAlign="space-between center" style="margin-bottom: 15px;display: flex;
-      justify-content: space-between;">
+          justify-content: space-between;">
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
             value="{{advertisement.status ? 'active' : 'resolved'}}" disabled="true">
             <mat-button-toggle value="active">Unresolved
@@ -36,37 +36,41 @@
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions style="padding-bottom: 0px;">
-          <p>
-            <b>Loss date:</b> {{advertisement.item.lossDate | date}}
-          </p>
+            <p>
+                <b>{{advertisement.lost ? 'Loss date:' : 'Find date:'}}</b> {{ (advertisement.lost ? advertisement.item.lossDate : advertisement.item.findingDate)  | date:'mediumDate':'+0400'}}
+              </p>
         </mat-card-actions>
         <mat-divider></mat-divider>
         <mat-card-actions>
-          <button mat-raised-button color="accent" (click)="onReactivate(advertisement.advertisementId)">REACTIVATE</button>
-          <div style="display: inline; font-size: 12px;">
-            <p style="display: inline;">
-              Advertisement expired on:
-              <b>{{advertisement.expirationDate | date:'mediumDate':'+0400'}}</b>
-            </p>
-          </div>
+          <button mat-button  style="margin: 0px;"  [routerLink] = "['/advertisement', advertisement.advertisementId]">DETAILS</button>
+          <button mat-raised-button color="accent"
+            (click)="onDelete(advertisement.advertisementId)">DELETE</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
+  <div *ngIf="itemsCount != 0" style="width: 100%;">
+    <!--PAGINATOR-->
+    <mat-divider></mat-divider>
+    <mat-paginator style="font-size: 17px; ; font-weight: 300; justify-content: center;" [length]="itemsCount"
+      [pageSize]="6" aria-label="Select page" (page)="onPageChange($event)">
+
+    </mat-paginator>
+  </div>
 
   <div class="for-center" *ngIf="itemsCount == 0">
     <div class="center" style="width: 333px;">
-      <p style="font-size: 22px;line-height: 40px;" class="p-center" >You don't have any expired advertisements.</p>
+      <p style="font-size: 22px;line-height: 40px;" class="p-center">No advertisements</p>
     </div>
   </div>
 
 </div>
 
 
-  <div class="for-center" *ngIf="!advertisements">
-    <div class="center">
-      <div style="margin-left: 10px;">
-        <mat-spinner></mat-spinner>
-      </div>
+<div class="for-center" *ngIf="!advertisements">
+  <div class="center">
+    <div style="margin-left: 10px;">
+      <mat-spinner></mat-spinner>
     </div>
   </div>
+</div>

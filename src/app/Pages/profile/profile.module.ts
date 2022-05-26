@@ -17,7 +17,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips'; 
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +31,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { SidebarComponent } from './messages/sidebar/sidebar.component';
 import { ChatComponent } from './messages/chat/chat.component';
 import { InactiveItemsComponent } from './inactive-items/inactive-items.component';
+import { ManageAccountsComponent } from './manage-accounts/manage-accounts.component';
+import { ManageItemsComponent } from './manage-items/manage-items.component';
+
 
 
 
@@ -41,6 +46,8 @@ import { InactiveItemsComponent } from './inactive-items/inactive-items.componen
     SidebarComponent,
     ChatComponent,
     InactiveItemsComponent,
+    ManageAccountsComponent,
+    ManageItemsComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +72,7 @@ import { InactiveItemsComponent } from './inactive-items/inactive-items.componen
     MatInputModule,
     MatChipsModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
 
 
     

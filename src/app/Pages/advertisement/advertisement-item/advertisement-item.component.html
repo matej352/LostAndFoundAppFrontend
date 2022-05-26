@@ -7,10 +7,13 @@
     </mat-chip-list>
     </mat-card-header>
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
       <mat-card-title> {{(adv)?.item?.title}} </mat-card-title>
       <mat-card-subtitle> {{(adv)?.item?.category?.name}} </mat-card-subtitle>
     </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <b>Advertisement owner:</b> {{ownerAccount?.username}}
+    </mat-card-content>
     <img mat-card-image [src]="imagePath"
       alt="photo">
     <mat-card-content>

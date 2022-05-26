@@ -1,0 +1,96 @@
+
+  .example-card {
+    max-width: 320px;
+    margin: 0px 10px 10px 0px;
+    margin-left: 27px;
+    margin-right: 10px;
+    margin-top: 15px
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .status {
+    background-color: rgb(200, 54, 54);
+    width: 60px;
+    height: 30px;
+  }
+
+  .image {
+    width: 352px;
+    height: 250px;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+
+  .description-container {
+    height: 80px;
+  }
+
+  .flex-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  mat-button-toggle {
+    width: 100px;
+  }
+
+
+
+  @media (max-width: 550px) {
+    .example-card {
+       margin: 0px;
+       max-width: none;
+       margin-bottom: 20px;
+    }
+    .image {
+        width: 320px;
+    }
+        
+  }
+
+
+
+
+  .for-center {
+    width: 450px;
+    padding: 163px;
+  }
+
+  @media (max-width: 1000px) {
+    .for-center {
+      
+      padding: 100px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .for-center {
+      
+      padding: 26px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .for-center {
+      width: 300px;
+      padding: 0px;
+    }
+  }
+
+ 
+
+  .center {
+    margin: auto auto;
+    width: 255px;
+    margin-top: 16%;
+  }
+
+  .p-center {
+    text-align: center;
+    line-height: 100px;
+   }
