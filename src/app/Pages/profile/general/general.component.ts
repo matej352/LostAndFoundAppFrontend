@@ -75,6 +75,7 @@ export class GeneralComponent implements OnInit {
     //added property to object
     this.profileUpdateForm.value.accountId = this.account?.accountId;
     this.profileUpdateForm.value.username = this.loggedInUsersUsername;
+    this.profileUpdateForm.value.active = this.account?.active;
 
     this.accountService.updateAccount(this.profileUpdateForm.value).subscribe({
       next: () => {

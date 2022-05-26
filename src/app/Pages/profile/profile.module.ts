@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatPaginatorModule} from '@angular/material/paginator'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTableModule} from '@angular/material/table'; 
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -73,6 +74,7 @@ import { ManageItemsComponent } from './manage-items/manage-items.component';
     MatChipsModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatTableModule,
 
 
     

@@ -5,4 +5,5 @@ export interface AccountUpdateDTO {
     email: string;
     firstName: string;
     lastName: string;
+    active: number;
   }

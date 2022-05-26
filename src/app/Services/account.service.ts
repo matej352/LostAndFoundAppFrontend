@@ -1,3 +1,4 @@
+import { QueryOptions } from './../Models/QueryOptions';
 import { AccountUpdateDTO } from './../DTOs/AccountUpdateDTO';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,6 +19,18 @@ export class AccountService {
     const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
 
     return this.http.get<Account>( `${this.restApiUrl}/account/${username}`, {headers : headers});
+  }
+
+  getAllAccounts(query: QueryOptions): Observable<Account[]> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+    const params = new HttpParams().append('start', query.startIndex).append('end', query.endIndex);
+    
+    return this.http.get<Account[]>( `${this.restApiUrl}/account`, {headers : headers, params : params});
+  }
+
+  getAllAccountsCount(): Observable<number> {
+    const headers = new HttpHeaders({'Authorization':`Bearer ${localStorage.getItem('jwt')}`})
+    return this.http.get<number>( `${this.restApiUrl}/account/count`, {headers : headers});
   }
 
   getAccountById(id: number): Observable<Account> {
