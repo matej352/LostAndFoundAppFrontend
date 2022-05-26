@@ -16,7 +16,7 @@ export class UiService {
 
   private subjectForChat = new Subject<any>();
 
-  private subcjetForNewSignalRMessage = new Subject<any>();
+  private subcjetForNewSignalRMessage = new Subject<MessageSignalR>();
 
 
   categoryFilter(categoryId: number): void {
@@ -54,7 +54,7 @@ export class UiService {
     this.subcjetForNewSignalRMessage.next(msg);
   }
 
-  onMessageRecieved(): Observable<any> {
+  onMessageRecieved(): Observable<MessageSignalR> {
     return this.subcjetForNewSignalRMessage.asObservable();
   }
 

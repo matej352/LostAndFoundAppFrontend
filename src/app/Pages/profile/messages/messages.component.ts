@@ -104,13 +104,13 @@ export class MessagesComponent implements OnInit {
       let messageForService = {
         content : obj.messageContent,
         recieverId : this.recieversAccount.accountId,
-        From : this.sendersAccount.accountId,
+        from : this.sendersAccount.username,
       }
 
       let messageForSignalR = {
         content : obj.messageContent,
         recieverId : this.recieversAccount.accountId,
-        From : this.loggedInUsersUsername,
+        From : this.sendersAccount.username,
       }
 
 
@@ -118,6 +118,8 @@ export class MessagesComponent implements OnInit {
 
        //bitno da se pojavi i poruka odmah korisniku koji ju je upravo poslao
        this.uiService.messageSent(messageForService); 
+
+      
 
     }  
 

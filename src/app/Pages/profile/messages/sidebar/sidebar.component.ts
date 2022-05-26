@@ -1,3 +1,5 @@
+import { Account } from 'src/app/Models/Account';
+import { AccountService } from 'src/app/Services/account.service';
 import { UiService } from './../../../../Services/ui.service';
 import { MessageGroup } from './../../../../Models/MessageGroup';
 import { Observable, Subscription } from 'rxjs';
@@ -15,6 +17,8 @@ import { MessageSignalR } from 'src/app/Models/MessageSignalR';
 })
 export class SidebarComponent implements OnInit {
 
+  recieverAccount?: Account;
+
   subscriptionSignalRLatestMessage!: Subscription;
 
   newMessageWhileChatOpened: boolean = false;
@@ -25,15 +29,41 @@ export class SidebarComponent implements OnInit {
 
   loggedInUsersUsername!: string;
 
+
+
   groups$!: Observable<MessageGroup[]>;
 
-  constructor( private checkIfLoggedInService: CheckIfLoggedInService, private messageService: MessageService, private uiService: UiService) {
+  constructor( private checkIfLoggedInService: CheckIfLoggedInService,
+      private messageService: MessageService,
+      private uiService: UiService,
+      private accountService: AccountService
+   ) {
 
-    this.subscriptionSignalRLatestMessage = uiService.onMessageRecieved().subscribe( msg => {
+    this.subscriptionSignalRLatestMessage = uiService.onMessageRecieved().subscribe( async msg => {
       
+      console.log("poruka poslana ili stigla pa se mora osvježiti sidebar");
+
+      if (this.newLatestMessage) {
+        this.jaPoslao(this.loggedInUsersUsername);
+      }
+      
+
       this.dateWhenMessageReceived = new Date()
       this.newMessageWhileChatOpened = true;
       this.newLatestMessage = msg;
+
+      console.log(msg.from + "    IDE GAS")
+      console.log(msg.content + "    IDE GAS")
+      console.log(msg.recieverId + "    IDE GAS")
+
+
+      await this.accountService.getAccountById(msg.recieverId).toPromise().then( 
+        (a) => {
+              this.recieverAccount = a;    
+        }
+      );
+
+
     });
   }
 
@@ -56,6 +86,23 @@ export class SidebarComponent implements OnInit {
     this.uiService.chatSelected(chatWith);
 
 
+  }
+
+  jaPoslao(username: string): boolean {
+
+    if (this.newLatestMessage) {
+      console.log("TEST1  " + this.newLatestMessage.from);
+    console.log("TEST2  " + username);
+    if (this.newLatestMessage.from == username) {
+      return true;
+    } else {
+      return false;
+    }
+    } else {
+      return false;
+    }
+
+    
   }
   
 

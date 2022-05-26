@@ -18,7 +18,7 @@
           </div>
         </div>
         <div *ngFor="let signalRMessage of newSignalRMessages" class="message">
-          <div [ngClass]="{ right : signalRMessage.From === loggedInUsersAccount?.accountId, left : signalRMessage.From !== loggedInUsersAccount?.accountId}">
+          <div [ngClass]="{ right : signalRMessage.from === loggedInUsersAccount?.username, left : signalRMessage.from !== loggedInUsersAccount?.username}">
             <div class="messageContent">
               {{signalRMessage.content}}
               <div class="time"> {{dateWhenMessageReceived | date:'shortTime':'+0200'}} </div>
@@ -28,8 +28,17 @@
       </div>
 
     </div>
-    <div *ngIf="!chatWith">
-      Pazi sta radis
+    <div *ngIf="!chatWith" style=" width: 100%; height: 100%;">
+      <div class="for-center">
+        <div class="center">
+          <div>
+            <img class="security"  src="./../../../../assets/img/chat.png" >
+          </div>
+          <div style="font-size: 20px;">
+            Never tell you password to anyone!
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
