@@ -12,7 +12,7 @@
                         <label for="username"><b>Username:</b></label>  
                         <mat-form-field class="demo-full-width">    
                             <input id="username" matInput [value]="account.username" disabled>    
-                        </mat-form-field>    
+                        </mat-form-field>     
                     </td>         
                 </tr>
                 <tr>    
@@ -88,6 +88,12 @@
                         <mat-form-field class="demo-full-width">    
                             <input formControlName="firstName" id="firstName" matInput >    
                         </mat-form-field>    
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('firstName')?.errors?.['required'] && profileUpdateForm.get('firstName')?.touched">
+                            First name is required
+                        </mat-hint>     
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('firstName')?.hasError('maxlength') && profileUpdateForm.get('firstName')?.touched">
+                            First name max length is 50 characters 
+                        </mat-hint>
                     </td>         
                 </tr>
                 <tr>    
@@ -95,7 +101,13 @@
                         <label for="lastName"><b>Last name:</b></label>  
                         <mat-form-field class="demo-full-width">    
                             <input formControlName="lastName" id="lastName" matInput >    
-                        </mat-form-field>    
+                        </mat-form-field> 
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('lastName')?.errors?.['required'] && profileUpdateForm.get('lastName')?.touched">
+                            Last name is required
+                        </mat-hint>     
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('lastName')?.hasError('maxlength') && profileUpdateForm.get('lastName')?.touched">
+                            Last name max length is 50 characters 
+                        </mat-hint>   
                     </td>         
                 </tr> 
                 <tr>
@@ -105,12 +117,27 @@
                     <td>    
                         <mat-form-field id="phoneNumber" class="demo-full-width">    
                             <input formControlName="phoneNumber" matInput placeholder="Phone number">    
-                        </mat-form-field>    
+                        </mat-form-field> 
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('phoneNumber')?.errors?.['required'] && profileUpdateForm.get('phoneNumber')?.touched">
+                             Phone number is required
+                        </mat-hint>     
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('phoneNumber')?.hasError('pattern') && profileUpdateForm.get('phoneNumber')?.touched">
+                             Phone number is invalid
+                        </mat-hint>    
                     </td>    
                     <td>    
                         <mat-form-field class="demo-full-width">    
                             <input formControlName="email" matInput placeholder="Email">    
-                        </mat-form-field>    
+                        </mat-form-field> 
+                        <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('email')?.errors?.['required'] && profileUpdateForm.get('email')?.touched">
+                           Email is required
+                       </mat-hint>     
+                       <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('email')?.hasError('email') && profileUpdateForm.get('email')?.touched">
+                            Email is invalid
+                       </mat-hint>  
+                       <mat-hint style="color: red;"  *ngIf="profileUpdateForm.get('email')?.hasError('maxlength') && profileUpdateForm.get('email')?.touched">
+                        Email max length is 50 characters 
+                    </mat-hint>     
                     </td>    
                 </tr>         
                     
@@ -121,7 +148,7 @@
                 </tr>    
                 <tr>    
                     <td colspan="2" class="content-center" style="padding: 35px;">   
-                        <button mat-raised-button color="accent" type="submit" style="margin-left: 10%;">Save changes</button>      
+                        <button  [disabled]="!profileUpdateForm.valid"  mat-raised-button color="accent" type="submit" style="margin-left: 10%;">Save changes</button>      
                     </td>    
                 </tr>    
             </table>    

@@ -2,7 +2,7 @@ import {  Router, ActivatedRoute } from '@angular/router';
 import { Account } from './../../../Models/Account';
 import { AccountService } from './../../../Services/account.service';
 import { Component, createPlatform, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckIfLoggedInService } from 'src/app/Services/check-if-logged-in.service';
 
 @Component({
@@ -38,10 +38,10 @@ export class GeneralComponent implements OnInit {
 
   createUpdateForm(): void {
     this.profileUpdateForm = new FormGroup({
-      firstName: new FormControl(this.account?.firstName),
-      lastName: new FormControl(this.account?.lastName),
-      phoneNumber: new FormControl(this.account?.phoneNumber),
-      email: new FormControl(this.account?.email),
+      firstName: new FormControl(this.account?.firstName,{validators: [Validators.required,  Validators.maxLength(50)]}),
+      lastName: new FormControl(this.account?.lastName, {validators: [Validators.required,  Validators.maxLength(50)]}),
+      phoneNumber: new FormControl(this.account?.phoneNumber, {validators: [Validators.required, Validators.pattern('[0-9]+')]}),
+      email: new FormControl(this.account?.email, {validators: [Validators.required, Validators.email, Validators.maxLength(50)]}),
     })
   }
 
@@ -77,16 +77,22 @@ export class GeneralComponent implements OnInit {
     this.profileUpdateForm.value.username = this.loggedInUsersUsername;
     this.profileUpdateForm.value.active = this.account?.active;
 
-    this.accountService.updateAccount(this.profileUpdateForm.value).subscribe({
-      next: () => {
-        this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-          this.redirect.navigate(["/profile", this.loggedInUsersUsername]);
+    if (this.account?.accountId) {
+
+      this.accountService.updateAccount(this.profileUpdateForm.value).subscribe({
+        next: () => {
+          this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+            this.redirect.navigate(["/profile", this.loggedInUsersUsername]);
+        })
+        },
+        error: (err) => {
+          console.log(err);
+        }
       })
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+
+    }
+
+
   }
 
 
