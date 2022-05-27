@@ -155,7 +155,10 @@
                   formControlName="ConfirmPassword"
                 >
                 <mat-error *ngIf="signUpError('Password', 'required')">Password confirmation is required</mat-error>
-                <mat-error *ngIf="signUpError('Password', 'minlength')">Minimum password length is 8</mat-error>      
+                <mat-error *ngIf="signUpError('Password', 'minlength')">Minimum password length is 8</mat-error> 
+                <mat-hint style="color: red;" *ngIf="RegisterForm.get('ConfirmPassword')?.hasError('mismatch')">
+                  Password mismatch
+                </mat-hint>      
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
 

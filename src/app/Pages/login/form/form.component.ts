@@ -35,10 +35,11 @@ export class FormComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private checkIfLoggedInService: CheckIfLoggedInService,
-              private validatorsStore: ValidatorsStoreService,
+              private validatorsStoreService: ValidatorsStoreService,
               private uiService: UiService,
               public accountService: AccountService,
-              public formBuilder: FormBuilder,) { }
+              public formBuilder: FormBuilder,
+             ) { }
 
   ngOnInit(): void {
 
@@ -64,7 +65,8 @@ export class FormComponent implements OnInit {
   }
 
   private createSignUpForm(): void {
-    this.RegisterForm = this.formBuilder.group({
+    this.RegisterForm = new FormGroup(
+      {
       Username: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
       FirstName: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
       LastName: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
@@ -72,11 +74,22 @@ export class FormComponent implements OnInit {
       PhoneNumber: new FormControl('', {validators: [Validators.required, Validators.pattern('[0-9]+')]}),
       Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
       ConfirmPassword: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
-    
+     },
      
-    });
+     [ValidatorsStoreService.mustMatch('Password', 'ConfirmPassword')]
+     
+     );
+
+
   }
 
+
+ passwordMatchError() {
+    return (
+      this.RegisterForm.getError('mismatch') &&
+      this.RegisterForm.get('ConfirmPassword')?.touched
+    );
+  }
 
   //#endregion
 
