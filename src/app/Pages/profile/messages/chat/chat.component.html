@@ -2,7 +2,7 @@
   <div id="header">
     <div class="avatarSection">
 
-      <div class="nameSection" style="margin-left: 20px ;">{{loggedInUsersUsername}}</div>
+      <div *ngIf="chatWith" class="nameSection" style="margin-left: 20px ;">Chat with:  {{chatWith}}</div>
     </div>
   </div>
   <div id="body">
