@@ -1,3 +1,4 @@
+import { ValidatorsStoreService } from './../../../../Validators/validators-store.service';
 import { Route, Router } from '@angular/router';
 import { ImageService } from './../../../../Services/image.service';
 import { ItemService } from './../../../../Services/item.service';
@@ -45,17 +46,18 @@ export class PublishFormComponent implements OnInit {
               private advertisementService: AdvertisementService,
               private itemService: ItemService,
               private imageService: ImageService,
-              private redirect: Router) { 
+              private redirect: Router,
+              private validatorsStoreService: ValidatorsStoreService) { 
 
       this.categories$ = categoryService.getAll();
 
 
       this.publishForm = this.formBuilder.group({
-        lostOrFound:['lost'],
-        title:[''],
-        description:[''],
-        lossOrFoundDate:[''],
-        category:['']
+        lostOrFound:['lost', {validators: [Validators.required]}],
+        title:['',  {validators: [Validators.required, Validators.maxLength(50)]}],
+        description:['',  {validators: [Validators.required, Validators.maxLength(1000)]}],
+        lossOrFoundDate:['',  {validators: [Validators.required, validatorsStoreService.datePickerValidator()]}],
+        category:['',  Validators.required]
       })
 
   }

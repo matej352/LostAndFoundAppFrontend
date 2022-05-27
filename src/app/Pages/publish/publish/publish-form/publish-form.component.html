@@ -1,4 +1,4 @@
-<mat-card class="container">     
+<mat-card class="container" style="background-color: aliceblue;">     
     <mat-card-content>
         <mat-card-header>
            <p>
@@ -19,19 +19,31 @@
                     <td colspan="2">    
                         <mat-form-field class="demo-full-width">    
                             <input formControlName="title" matInput placeholder="Title">    
-                        </mat-form-field>    
+                        </mat-form-field>
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('title')?.errors?.['required'] && publishForm.get('title')?.touched">
+                            Title is required
+                        </mat-hint>    
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('title')?.errors?.['maxlength'] && publishForm.get('title')?.touched">
+                            Title max length is 50 characters 
+                        </mat-hint> 
                     </td>         
                 </tr>         
                 <tr>    
                     <td colspan="2">    
                         <mat-form-field class="demo-full-width">    
                             <textarea formControlName="description" matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>    
-                        </mat-form-field>    
+                        </mat-form-field>  
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('description')?.errors?.['required'] && publishForm.get('description')?.touched">
+                            Description is required
+                        </mat-hint>  
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('description')?.errors?.['maxlength'] && publishForm.get('description')?.touched">
+                            Description max length is 1000 characters 
+                        </mat-hint>   
                     </td>
                 </tr>
                 <tr> 
                     <td style="padding-top: 35px;">    
-                        <span>Select item image (optional)</span><br><br>      
+                        <span>Select item image <span style="color: blue;">(optional)</span></span><br><br>      
                     </td> 
                     <td><br>
                         <div class="file-upload">
@@ -53,7 +65,13 @@
                             <input formControlName="lossOrFoundDate" matInput [matDatepicker]="picker" placeholder="{{publishForm.get('lostOrFound')?.value == 'lost' ? 'Loss date' : 'Found date'}}">    
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>    
                             <mat-datepicker touchUi="true" #picker></mat-datepicker>    
-                        </mat-form-field>    
+                        </mat-form-field> 
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('lossOrFoundDate')?.errors?.['required'] && publishForm.get('lossOrFoundDate')?.touched">
+                            {{publishForm.get('lostOrFound')?.value == 'lost' ? 'Loss date' : 'Found date'}} is required
+                        </mat-hint>     
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('lossOrFoundDate')?.hasError('invalidDate') && publishForm.get('lossOrFoundDate')?.touched">
+                            {{publishForm.get('lostOrFound')?.value == 'lost' ? 'Loss date' : 'Found date'}} is invalid
+                        </mat-hint> 
                     </td>    
                 </tr>   
                 <tr>    
@@ -65,12 +83,15 @@
                             <mat-select placeholder="Category" formControlName="category">    
                                 <mat-option *ngFor="let category of (categories$ | async)"  value="{{category.categoryId}}" >{{category.name}}</mat-option>      
                             </mat-select>    
-                        </mat-form-field>    
+                        </mat-form-field> 
+                        <mat-hint style="color: red;"  *ngIf="publishForm.get('category')?.errors?.['required'] && publishForm.get('category')?.touched">
+                            Category is required
+                        </mat-hint>     
                     </td>    
                 </tr> 
                 <tr>
                     <td colspan="2" style="padding-top: 35px;">
-                        <span>{{publishForm.get('lostOrFound')?.value == 'lost' ? 'Select location where you lost item' : 'Select location where you found item'}} (optional)</span><br><br>
+                        <span>{{publishForm.get('lostOrFound')?.value == 'lost' ? 'Select location where you lost item' : 'Select location where you found item'}} <span style="color: blue;">(optional)</span></span><br><br>
                         <app-location-publish (coordinationsSelected)="setCoordinates($event)"  class="demo-full-width"></app-location-publish>
                     </td>
                     
@@ -82,7 +103,7 @@
                 </tr>    
                 <tr>    
                     <td colspan="2" class="content-center" style="padding: 35px;">    
-                        <button mat-raised-button color="accent" type="submit">Submit</button>    
+                        <button mat-raised-button color="accent" type="submit" [disabled]="!publishForm.valid" >Submit</button>    
                     </td>    
                 </tr>    
             </table>    
