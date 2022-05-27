@@ -19,6 +19,7 @@
                     formControlName="Username"
                     >
                     <mat-error *ngIf="signInError('Username', 'required')">Username is required</mat-error>
+                    <mat-error *ngIf="signInError('Username', 'maxlength')">Username max length is 50 characters</mat-error>
                     <mat-icon matSuffix>perm_identity</mat-icon>
                 </mat-form-field>
                 <mat-form-field>
@@ -70,6 +71,7 @@
                   formControlName="Username"
                  >
                  <mat-error *ngIf="signUpError('Username', 'required')">Username is required</mat-error>
+                 <mat-error *ngIf="signUpError('Username', 'maxlength')">Username max length is 50 characters</mat-error>
                 <mat-icon matSuffix>perm_identity</mat-icon>
                 
   
@@ -83,6 +85,7 @@
                   formControlName="FirstName"
                  >
                  <mat-error *ngIf="signUpError('FirstName', 'required')">Firstname is required</mat-error>
+                 <mat-error *ngIf="signUpError('FirstName', 'maxlength')">FirstName max length is 50 characters</mat-error>
                 <mat-icon matSuffix>face</mat-icon>
               </mat-form-field>
               <mat-form-field>
@@ -95,6 +98,7 @@
                   formControlName="LastName"
                  >
                  <mat-error *ngIf="signUpError('LastName', 'required')">Lastname is required</mat-error> 
+                 <mat-error *ngIf="signUpError('LastName', 'maxlength')">LastName max length is 50 characters</mat-error>
                 <mat-icon matSuffix>face</mat-icon>
   
               </mat-form-field>
@@ -109,6 +113,7 @@
                  >
                  <mat-error *ngIf="signUpError('Email', 'required')">Email is required</mat-error>
                  <mat-error *ngIf="signUpError('Email', 'email')">Incorrect email</mat-error>
+                 <mat-error *ngIf="signUpError('Email', 'maxlength')">Email max length is 50 characters</mat-error>
                 <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
               <mat-form-field>

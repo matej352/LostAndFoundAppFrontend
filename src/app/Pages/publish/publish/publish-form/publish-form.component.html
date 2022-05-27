@@ -6,10 +6,10 @@
            </p>
         </mat-card-header>    
         <form [formGroup]="publishForm" (ngSubmit)="publish()">    
-            <table>
+            <table style="margin: auto;">
                 <tr>    
                     <td colspan="2" style="padding-bottom: 20px;">
-                            <mat-radio-group  formControlName="lostOrFound" name="radioGroup">    
+                            <mat-radio-group  formControlName="lostOrFound" name="radioGroup" style="display: flex;">    
                                 <mat-radio-button name="lost" value="lost" checked="true">LOST</mat-radio-button>    
                                 <mat-radio-button name="found" value="found">FOUND</mat-radio-button>    
                             </mat-radio-group>           

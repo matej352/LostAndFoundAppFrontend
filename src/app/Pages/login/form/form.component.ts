@@ -4,7 +4,7 @@ import { ValidatorsStoreService } from './../../../Validators/validators-store.s
 import { CheckIfLoggedInService } from './../../../Services/check-if-logged-in.service';
 import { AuthService } from './../../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { HubConnection, HubConnectionBuilder, LogLevel, HttpTransportType } from '@aspnet/signalr';
@@ -37,7 +37,8 @@ export class FormComponent implements OnInit {
               private checkIfLoggedInService: CheckIfLoggedInService,
               private validatorsStore: ValidatorsStoreService,
               private uiService: UiService,
-              public accountService: AccountService) { }
+              public accountService: AccountService,
+              public formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
 
@@ -56,18 +57,18 @@ export class FormComponent implements OnInit {
   //#region [Setup]
 
   private createSignInForm(): void {
-    this.SingInForm = new FormGroup({
-      Username: new FormControl('', {validators: [Validators.required]}),
+    this.SingInForm = this.formBuilder.group({
+      Username: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
       Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
     });
   }
 
   private createSignUpForm(): void {
-    this.RegisterForm = new FormGroup({
-      Username: new FormControl('', {validators: [Validators.required]}),
-      FirstName: new FormControl('', {validators: [Validators.required]}),
-      LastName: new FormControl('', {validators: [Validators.required]}),
-      Email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+    this.RegisterForm = this.formBuilder.group({
+      Username: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
+      FirstName: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
+      LastName: new FormControl('', {validators: [Validators.required, Validators.maxLength(50)]}),
+      Email: new FormControl('', {validators: [Validators.required, Validators.email, Validators.maxLength(50)]}),
       PhoneNumber: new FormControl('', {validators: [Validators.required, Validators.pattern('[0-9]+')]}),
       Password: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),
       ConfirmPassword: new FormControl('',{validators: [Validators.required, Validators.minLength(8)]}),

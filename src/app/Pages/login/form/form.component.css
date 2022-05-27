@@ -13,10 +13,16 @@
   }
   
   mat-card {
-    width: 50%;
-    margin: 10% auto;
+    width: 60%;
+    margin: 2% auto;
     border-radius: 8px;
   }
+
+  @media (max-width: 550px) {
+    mat-card {
+      width: 85%;
+    }
+}
   mat-form-field {
     width: 80%;
     display: block;
