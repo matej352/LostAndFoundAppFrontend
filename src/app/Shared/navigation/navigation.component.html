@@ -34,7 +34,7 @@
   <button mat-menu-item>Contact us</button>
   <mat-divider></mat-divider>
   <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-menu-item routerLink="profile/{{loggedInUsersUsername}}">Profile</button>
-  <button *ngIf="(checkIfLoggedInService.isLoggedIn$ | async) && loggedInUsersRole != check()" mat-menu-item routerLink="publish">Create advertisement</button>
+  <button *ngIf="(checkIfLoggedInService.isLoggedIn$ | async) && loggedInUsersRole && loggedInUsersRole != check()" mat-menu-item routerLink="publish">Create advertisement</button>
   <button *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-menu-item routerLink="login">Sign in</button>
   <div *ngIf="checkIfLoggedInService.isLoggedIn$ | async">
     <mat-divider></mat-divider>
