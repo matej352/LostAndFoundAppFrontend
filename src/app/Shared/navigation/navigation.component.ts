@@ -31,7 +31,10 @@ export class NavigationComponent implements OnInit {
       .onchange()
       .subscribe((boolValue) => (this.deviceXs = boolValue));
 
-    this.uiSubscription = uiService.onUserLoggIn().subscribe( () => this.loggedInUsersUsername = this.getLoggedInUserName());
+    this.uiSubscription = uiService.onUserLoggIn().subscribe( () => {
+      this.loggedInUsersUsername = this.getLoggedInUserName();
+      this.loggedInUsersRole = this.getLoggedInUserRole();
+    });
   }
 
   ngOnInit(): void {
