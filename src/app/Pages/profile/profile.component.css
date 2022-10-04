@@ -1,5 +1,6 @@
 .page {
-    height: 100%;
+    
+    height: calc(100% - 100px);
     top: 0;
     margin-top: 60px;
   }
@@ -9,11 +10,15 @@
     background: white;
     color: #004a9f;
   }
+
+  mat-sidenav-container {
+    height: calc(100% - 100px);
+  }
   
   mat-sidenav {
     margin: 16px;
     width: 200px;
-    height: 625px;
+    height: calc(100% - 30px);
     border-right: none;
     background: #002b5c;
     color: white;
@@ -41,7 +46,7 @@
   }
   
   mat-sidenav-container {
-    height: calc(100vh - 65px);
+    height: calc(100%);
   }
   
   .menu-button {
