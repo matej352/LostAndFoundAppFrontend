@@ -13,7 +13,6 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile/:username', loadChildren: () => import(`./Pages/profile/profile.module`).then(m => m.ProfileModule),canActivate: [AuthGuardService] },
- // {path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'publish', component: PublishComponent, canActivate: [AuthGuardService]},
   {path: 'advertisement/:id', component: AdvertisementComponent, canActivate: [AuthGuardService]},
   {path: 'contact/:id', component: ContactComponent, canActivate: [AuthGuardService]},
