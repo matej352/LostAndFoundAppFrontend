@@ -34,4 +34,7 @@
     .example-container {
       height: 100%;
     }
+    mat-drawer {
+      max-width: none !important;
+    }
   }

@@ -49,7 +49,7 @@ img {
 
 
     .conversation {
-      height: 67px;
+      
       display: flex;
       padding-right: 5px;
       transition: all 0.4s ease-in-out;
@@ -67,6 +67,9 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
       }
 
         img {
@@ -75,7 +78,7 @@ img {
         }
       
         .content {
-            border-bottom: 1px solid #f2f2f2;
+            
             flex-grow: 1;
             padding: 13px 0px;
             padding-right: 10px;
@@ -83,6 +86,7 @@ img {
 
         .conversationHeader {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
         }
