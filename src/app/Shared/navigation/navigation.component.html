@@ -18,7 +18,7 @@
         <button *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button routerLink="profile/{{loggedInUsersUsername}}">Profile</button>
         <button class="margin" *ngIf="(checkIfLoggedInService.isLoggedIn$ | async) && loggedInUsersRole && loggedInUsersRole != check() "mat-button mat-raised-button color="basic" routerLink="publish">Create advertisement</button>
         <button class="margin" *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-button mat-raised-button color="basic" routerLink="login">Sign in</button>
-        <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button mat-raised-button color="accent" (click)="logOut()" routerLink="home">Sign out</button>
+        <button class="margin" *ngIf="checkIfLoggedInService.isLoggedIn$ | async" mat-button mat-raised-button color="accent" (click)="logOut()" routerLink="/">Sign out</button>
       </div>
     </div>
     <button *ngIf="deviceXs" mat-icon-button [matMenuTriggerFor]="menu">
@@ -38,7 +38,7 @@
   <button *ngIf="!(checkIfLoggedInService.isLoggedIn$ | async)" mat-menu-item routerLink="login">Sign in</button>
   <div *ngIf="checkIfLoggedInService.isLoggedIn$ | async">
     <mat-divider></mat-divider>
-    <button  mat-menu-item (click)="logOut()" routerLink="home">Sign out</button>
+    <button  mat-menu-item (click)="logOut()" routerLink="/">Sign out</button>
   </div>
   
 </mat-menu>

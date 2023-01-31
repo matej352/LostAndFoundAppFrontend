@@ -33,6 +33,7 @@
   @media (max-width: 600px) {
     .example-container {
       height: 100%;
+      justify-content: center;
     }
     mat-drawer {
       max-width: none !important;

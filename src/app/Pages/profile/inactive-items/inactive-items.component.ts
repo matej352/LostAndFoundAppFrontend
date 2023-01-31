@@ -62,7 +62,7 @@ onReactivate(id: number): void {
   this.advertisementService.reactivateAdv(id).toPromise().then(
     (res) => {
      
-      this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this.redirect.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.redirect.navigate(["/profile", this.loggedInUsersUsername,"items", "unactive"]);
     })
     }

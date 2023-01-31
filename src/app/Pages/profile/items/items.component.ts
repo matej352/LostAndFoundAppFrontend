@@ -83,7 +83,7 @@ changeStatus(id: number, status: string, cameFrom: string): void {
   this.advertisementService.changeAdvStatus(id).toPromise().then(
     () => {
       const pathLostOrFound = this.found ? 'found' : 'lost';
-      this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this.redirect.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.redirect.navigate(["/profile", this.loggedInUsersUsername,"items", pathLostOrFound]);
     })
     }

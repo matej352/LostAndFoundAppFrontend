@@ -81,7 +81,7 @@ export class GeneralComponent implements OnInit {
 
       this.accountService.updateAccount(this.profileUpdateForm.value).subscribe({
         next: () => {
-          this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+          this.redirect.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.redirect.navigate(["/profile", this.loggedInUsersUsername]);
         })
         },

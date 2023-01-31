@@ -99,7 +99,7 @@ export class ContactComponent implements OnInit {
 
   returnHome(): void {
     this.hubConnection.stop();
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/"]);
   }
 
 

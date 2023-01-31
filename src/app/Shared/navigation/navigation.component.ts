@@ -63,7 +63,7 @@ export class NavigationComponent implements OnInit {
 
   navigateHome(): void {
     this.router.navigateByUrl('/404', { skipLocationChange: true }).then(() => {
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/"]);
   })
   }
 

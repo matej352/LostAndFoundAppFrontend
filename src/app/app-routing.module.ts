@@ -9,8 +9,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { AuthGuardService } from './Guards/auth-guard.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile/:username', loadChildren: () => import(`./Pages/profile/profile.module`).then(m => m.ProfileModule),canActivate: [AuthGuardService] },
   {path: 'publish', component: PublishComponent, canActivate: [AuthGuardService]},

@@ -119,7 +119,7 @@ export class PublishFormComponent implements OnInit {
         if (this.fileName) {
           this.saveImage();
         } else {
-          this.redirect.navigate(['/home'])
+          this.redirect.navigate([''])
         }  
       },
       err => {
@@ -130,7 +130,7 @@ export class PublishFormComponent implements OnInit {
 
   saveImage() {
 
-    this.imageService.create(this.formData, this.item?.itemId).subscribe( res => this.redirect.navigate(['/home']));
+    this.imageService.create(this.formData, this.item?.itemId).subscribe( res => this.redirect.navigate(['/']));
   }
 
 

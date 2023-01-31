@@ -72,7 +72,7 @@ export class ManageItemsComponent implements OnInit {
 onDelete(id: number): void {
   this.advertisementService.deleteAdvertisement(id).toPromise().then(
     (res) => {
-      this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this.redirect.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.redirect.navigate(["/profile", this.loggedInUsersUsername,"manage", "items"]);
     })
     },

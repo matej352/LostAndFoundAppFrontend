@@ -88,7 +88,7 @@ export class ManageAccountsComponent implements OnInit {
   updateAccount(account: AccountUpdateDTO): void {
     this.accountService.updateAccount(account).subscribe({
       next: () => {
-        this.redirect.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+        this.redirect.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.redirect.navigate(["/profile", this.loggedInUsersUsername,"manage", "accounts"]);
       })
       },

@@ -123,7 +123,7 @@ export class FormComponent implements OnInit {
        
         
 
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/"]);
   
       },
       error: err => {
@@ -138,7 +138,7 @@ export class FormComponent implements OnInit {
     this.authService.registerUser(this.RegisterForm.value)
     .subscribe({
       next: response => {
-        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/login']);
       });
       },
